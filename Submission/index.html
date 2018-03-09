@@ -16,7 +16,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container" id="shell">
     <div class="jumbotron row">
       <div class="col">
         <h1>INFO 4602-5602: Project 2</h1>
@@ -32,46 +32,95 @@
     <nav class="navbar navbar-expand-sm bg-info navbar-dark sticky-top">
       <ul class="navbar-nav">
         <li class="nav-item active mr-5">
-          <a class="nav-link" href="#vis_section1">Vis1</a>
+          <a class="nav-link" href="#vis_section_1">Vis1</a>
         </li>
         <li class="nav-item mr-5">
-          <a class="nav-link" href="#vis_section2">Vis2</a>
+          <a class="nav-link" href="#vis_section_2">Vis2</a>
         </li>
         <li class="nav-item mr-5">
-          <a class="nav-link" href="#vis_section3">Vis3</a>
+          <a class="nav-link" href="#vis_section_3">Vis3</a>
         </li>
         <li class="nav-item mr-5">
-          <a class="nav-link" href="#vis_section4">Vis4</a>
+          <a class="nav-link" href="#vis_section_4">Vis4</a>
         </li>
       </ul>
     </nav>
 
     <!-- vis section 1 -->
-    <div class="vis" id="vis_section1">
+    <div class="vis container " id="vis_section_1">
       <h2 class="text-center">Visualization 1</h2>
+      <hr class="my-3">
+      <div class="row ">
+        <div class="col-3 border border-success ">
+          <h3 class="text-center">Data Queries</h3>
+        </div>
+        <div class="col-9 border border-success ">
+          <h3 class="text-center">Chart</h3>
+          <div class="charts" id="chart_1">
+
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- vis section 2 -->
-    <div class="vis" id="vis_section2">
+    <div class="vis container " id="vis_section_2">
       <h2 class="text-center">Visualization 2</h2>
+      <hr class="my-3">
+      <div class="row ">
+        <div class="col-3 border border-success ">
+          <h3 class="text-center">Data Queries</h3>
+        </div>
+        <div class="col-9 border border-success ">
+          <h3 class="text-center">Chart</h3>
+          <div class="charts" id="chart_2">
+
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- vis section 3 -->
-    <div class="vis" id="vis_section3">
+    <div class="vis container " id="vis_section_3">
       <h2 class="text-center">Visualization 3</h2>
+      <hr class="my-3">
+      <div class="row ">
+        <div class="col-3 border border-success ">
+          <h3 class="text-center">Data Queries</h3>
+        </div>
+        <div class="col-9 border border-success ">
+          <h3 class="text-center">Chart</h3>
+          <div class="charts" id="chart_3">
+
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- vis section 4 -->
-    <div class="vis" id="vis_section4">
+    <div class="vis container " id="vis_section_4">
       <h2 class="text-center">Visualization 4</h2>
+      <hr class="my-3">
+      <div class="row">
+        <div class="col-3 border border-success ">
+          <h3 class="text-center">Data Queries</h3>
+        </div>
+        <div class="col-9 border border-success ">
+          <h3 class="text-center">Chart</h3>
+          <div class="charts" id="chart_4">
+
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!-- footer -->
+    <footer class="text-center bg-info mt-1 pt-2 pb-1">
+      <p>Posted by: Team 1</p>
+      <p><span class="mr-5">Jiawei Liu</span><span class="mr-5">Keke Wu</span><span class="mr-5">Wei Miao</span><span class="mr-5">Xu Han</span><span class="mr-5">Yawen Zhang</span> </p>
+    </footer>
+
   </div>
-
-
-
-
-
 
 
   <!-- Bootstrap JavaScript -->
@@ -81,7 +130,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <!-- project JavaScript -->
-  <script type="text/javascript" src="vis.js"></script>
+  <script src="main.js"></script>
+  <script src="vis.js"></script>
 
 </body>
 
