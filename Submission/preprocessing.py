@@ -3,7 +3,7 @@
 import pandas as pd
 import math
 
-NCWIT_Data = pd.read_csv("data/NCWIT_DataV2_RawData.csv")
+NCWIT_Data = pd.read_csv("data/raw/NCWIT_DataV2_RawData.csv")
 # print(NCWIT_Data)
 
 # compute Total Enrollment
@@ -16,8 +16,9 @@ vis_1_Female_attr = ["Totals, Female: Graduated (Tot. F)", "Totals, Female: Left
 # export
 vis_1_Female = NCWIT_Data.groupby("School Year")[vis_1_Female_attr].sum()
 # compute rate (%)
-vis_1_Female['Female Graduated Rate (%)'] = vis_1_Female.apply(lambda row: row[0]/row[2]*100, axis = 1)
-vis_1_Female['Female Dropout Rate (%)'] = vis_1_Female.apply(lambda row: row[1]/row[2]*100, axis = 1)
+vis_1_Female['Female Enrollment Rate (%)'] = vis_1_Female.apply(lambda row: row[2]/(row[0]+row[1]+row[2])*100, axis = 1)
+vis_1_Female['Female Graduated Rate (%)'] = vis_1_Female.apply(lambda row: row[0]/(row[0]+row[1]+row[2])*100, axis = 1)
+vis_1_Female['Female Dropout Rate (%)'] = vis_1_Female.apply(lambda row: row[1]/(row[0]+row[1]+row[2])*100, axis = 1)
 # print(vis_1_Female)
 
 # attributes
@@ -25,8 +26,9 @@ vis_1_Male_attr = ["Totals, Male: Graduated (Tot. M)", "Totals, Male: Left Insti
 # export
 vis_1_Male = NCWIT_Data.groupby("School Year")[vis_1_Male_attr].sum()
 # compute rate (%)
-vis_1_Male['Male Graduated Rate (%)'] = vis_1_Male.apply(lambda row: row[0]/row[2]*100, axis = 1)
-vis_1_Male['Male Dropout Rate (%)'] = vis_1_Male.apply(lambda row: row[1]/row[2]*100, axis = 1)
+vis_1_Male['Male Enrollment Rate (%)'] = vis_1_Male.apply(lambda row: row[2]/(row[0]+row[1]+row[2])*100, axis = 1)
+vis_1_Male['Male Graduated Rate (%)'] = vis_1_Male.apply(lambda row: row[0]/(row[0]+row[1]+row[2])*100, axis = 1)
+vis_1_Male['Male Dropout Rate (%)'] = vis_1_Male.apply(lambda row: row[1]/(row[0]+row[1]+row[2])*100, axis = 1)
 
 # combine Female & Male
 vis_1 = pd.concat([vis_1_Female, vis_1_Male], axis = 1)
