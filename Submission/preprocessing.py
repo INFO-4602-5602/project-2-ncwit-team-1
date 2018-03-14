@@ -35,7 +35,7 @@ def vis_1():
     # combine Female & Male
     vis_1 = pd.concat([vis_1_Female, vis_1_Male], axis = 1)
     vis_1 = vis_1.dropna() # remove 2016-2017 NaN
-    vis_1.to_csv("data/vis_1_Graduate_Dropout_rate_Year.csv")
+    vis_1.to_csv("data/vis_1_2_Graduate_Dropout_rate_Year.csv")
 
 def vis_2():
 

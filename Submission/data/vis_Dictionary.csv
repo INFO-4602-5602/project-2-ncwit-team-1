@@ -1,31 +1,1 @@
-﻿Q1&Q2,
-sy,School Year
-tfg,"Totals, Female: Graduated (Tot. F)"
-tfl,"Totals, Female: Left Institution (not graduated) (Tot. F)"
-tfe,"Totals, Female: Enrollment"
-fer,Female Enrollment Rate (%)
-fgr,Female Graduated Rate (%)
-fdr,Female Dropout Rate (%)
-tmg,"Totals, Male: Graduated (Tot. M)"
-tml,"Totals, Male: Left Institution (not graduated) (Tot. M)"
-tme,"Totals, Male: Enrollment"
-mer,Male Enrollment Rate (%)
-mgr,Male Graduated Rate (%)
-mdr,Male Dropout Rate (%)
-,
-,
-Q3,
-,
-,
-,
-,
-,
-,
-,
-,
-,
-,
-,
-,
-,
-Q4,
+Q1&Q2	sy	School Yeartfg	"Totals, Female: Graduated (Tot. F)"tfl	"Totals, Female: Left Institution (not graduated) (Tot. F)"tfe	"Totals, Female: Enrollment"fer	Female Enrollment Rate (%)fgr	Female Graduated Rate (%)fdr	Female Dropout Rate (%)tmg	"Totals, Male: Graduated (Tot. M)"tml	"Totals, Male: Left Institution (not graduated) (Tot. M)"tme	"Totals, Male: Enrollment"mer	Male Enrollment Rate (%)mgr	Male Graduated Rate (%)mdr	Male Dropout Rate (%)fmg	Female/Male Total Graduatedfml	Female/Male Total Left Insititutionfme	Female/Male Total Enrollment	Q3														Q4	
