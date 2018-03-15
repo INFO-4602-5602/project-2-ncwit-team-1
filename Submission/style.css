@@ -43,8 +43,7 @@ body {
   width: 80px;
   z-index: 10;
   background: rgba(0, 0, 0,0.8);
-  line-height: 140%
-  color: #fff;
+  line-height: 140%x
   border-radius: 2px;
  }
  .label {
