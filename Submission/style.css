@@ -24,12 +24,13 @@ body {
 }
 
 .charts {
-  height: 400px;
+  height: 500px;
 }
 
 .legend {
   font-size: 13px;
 }
+
 .tooltip {
   box-shadow: 0 0 5px #999999;
   display: none;
@@ -42,10 +43,10 @@ body {
   top: 95px;
   width: 80px;
   z-index: 10;
-  background: rgba(0, 0, 0,0.8);
-  line-height: 140%x
-  border-radius: 2px;
- }
- .label {
-   font-weight: 600;
- }
+  background: rgba(0, 0, 0, 0.8);
+  line-height: 140%x border-radius: 2px;
+}
+
+.label {
+  font-weight: 600;
+}
