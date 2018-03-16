@@ -18,14 +18,14 @@ var q1Height = 500 - q1Margin.top - q1Margin.bottom;
 
 var parseTime = d3.timeParse("%Y");
 
-var x = d3.scaleTime().range([0, q1Width]),
-    y = d3.scaleLinear().range([q1Height, 0]),
-    z = d3.scaleOrdinal(d3.schemeCategory10);
+var q1X = d3.scaleTime().range([0, q1Width]),
+    q1Y = d3.scaleLinear().range([q1Height, 0]),
+    q1Z = d3.scaleOrdinal(d3.schemeCategory10);
 
 var line = d3.line()
     .curve(d3.curveLinear)
-    .x(function(d) { return x(d.year); })
-    .y(function(d) { return y(d.ratio); });
+    .x(function(d) { return q1X(d.year); })
+    .y(function(d) { return q1Y(d.ratio); });
 
 //define svg
 var q1_svg = d3.select('#chart_1').append("svg")
@@ -58,23 +58,23 @@ function renderLineChart() {
       };
     });
 
-    x.domain(d3.extent(data, function(d) { return d.sy; }));
+    q1X.domain(d3.extent(data, function(d) { return d.sy; }));
 
-    y.domain([
+    q1Y.domain([
       d3.min(categories, function(c) { return d3.min(c.values, function(d) { return d.ratio; }); }),
       d3.max(categories, function(c) { return d3.max(c.values, function(d) { return d.ratio; }); })
     ]);
 
-    z.domain(categories.map(function(c) { return c.id; }));
+    q1Z.domain(categories.map(function(c) { return c.id; }));
 
     q1_svg.append("g")
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + q1Height + ")")
-        .call(d3.axisBottom(x));
+        .call(d3.axisBottom(q1X));
 
     q1_svg.append("g")
         .attr("class", "axis axis--y")
-        .call(d3.axisLeft(y))
+        .call(d3.axisLeft(q1Y))
         .append("text")
         .attr("transform", "rotate(-90)")
         .attr("y", 6)
@@ -90,11 +90,11 @@ function renderLineChart() {
     category.append("path")
         .attr("class", "line")
         .attr("d", function(d) { return line(d.values); })
-        .style("stroke", function(d) { return z(d.id); });
+        .style("stroke", function(d) { return q1Z(d.id); });
 
     category.append("text")
         .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
-        .attr("transform", function(d) { return "translate(" + x(d.value.year) + "," + y(d.value.ratio) + ")"; })
+        .attr("transform", function(d) { return "translate(" + q1X(d.value.year) + "," + q1Y(d.value.ratio) + ")"; })
         .attr("x", 3)
         .attr("dy", "0.35em")
         .style("font", "10px sans-serif")
