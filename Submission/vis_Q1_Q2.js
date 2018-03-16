@@ -13,7 +13,7 @@ var q1Margin = {
   bottom: 30,
   left: 40
 };
-var q1Width = 650 - q1Margin.left - q1Margin.right;
+var q1Width = 800 - q1Margin.left - q1Margin.right;
 var q1Height = 500 - q1Margin.top - q1Margin.bottom;
 
 var parseTime = d3.timeParse("%Y");
@@ -23,7 +23,7 @@ var q1X = d3.scaleTime().range([0, q1Width]),
     q1Z = d3.scaleOrdinal(d3.schemeCategory10);
 
 var line = d3.line()
-    .curve(d3.curveLinear)
+    .curve(d3.curveMonotoneX)
     .x(function(d) { return q1X(d.year); })
     .y(function(d) { return q1Y(d.ratio); });
 
@@ -61,25 +61,27 @@ function renderLineChart() {
     q1X.domain(d3.extent(data, function(d) { return d.sy; }));
 
     q1Y.domain([
-      d3.min(categories, function(c) { return d3.min(c.values, function(d) { return d.ratio; }); }),
-      d3.max(categories, function(c) { return d3.max(c.values, function(d) { return d.ratio; }); })
+      d3.min(categories, function(c) { return d3.min(c.values, function(d) { return d.ratio; }) - 0.04; }),
+      d3.max(categories, function(c) { return d3.max(c.values, function(d) { return d.ratio; }) + 0.04; })
     ]);
 
     q1Z.domain(categories.map(function(c) { return c.id; }));
 
     q1_svg.append("g")
-        .attr("class", "axis axis--x")
+        .attr("class", "axis")
         .attr("transform", "translate(0," + q1Height + ")")
         .call(d3.axisBottom(q1X));
 
     q1_svg.append("g")
-        .attr("class", "axis axis--y")
+        .attr("class", "axis")
         .call(d3.axisLeft(q1Y))
         .append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", "0.71em")
-        .attr("fill", "none")
+        .attr("x", 2)
+        .attr("y", q1Y(q1Y.ticks().pop()) + 0.5)
+        .attr("dy", "0.5em")
+        .attr("fill", "#000")
+        .attr("font-weight", "bold")
+        .attr("text-anchor", "start")
         .text("Female/Male Ratio");
 
     var category = q1_svg.selectAll(".category")
@@ -99,7 +101,17 @@ function renderLineChart() {
         .attr("dy", "0.35em")
         .style("font", "10px sans-serif")
         .text(function(d) { return d.id; });
-      });
+
+    category.selectAll(".dot")
+        .data(function(d) { return d.values; })
+        .enter().append("circle")
+        .attr("class", "dot")
+        .attr("cx", function(d) { return q1X(d.year) })
+        .attr("cy", function(d) { return q1Y(d.ratio) })
+        .style("fill", "black")
+        .attr("r", 4);
+
+     });
 
 };
 
