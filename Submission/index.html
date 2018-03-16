@@ -57,29 +57,29 @@
       <h2 class="text-center">The Ratio of Female to Male in Enrollment, Graduated and Dropout Count with Years</h2>
       <hr class="my-3">
       <div class="row ">
-        <div class="col-3 border border-success ">
+        <div class="col-3 border-right">
           <h3 class="text-center">Data Queries</h3>
 
           <form id="q1_Form">
             <div class="form-check">
               <label class="form-check-label">
-        <input type="checkbox" class="form-check-input" value="enrollment">Enrollment: Female/Male
+       <p> <input type="checkbox" class="form-check-input" value="enrollment">Enrollment: Female/Male<p>
       </label>
             </div>
             <div class="form-check">
               <label class="form-check-label">
-        <input type="checkbox" class="form-check-input" value="graduated">Graduated: Female/Male
+        <p><input type="checkbox" class="form-check-input" value="graduated">Graduated: Female/Male<p>
       </label>
             </div>
             <div class="form-check disabled">
               <label class="form-check-label">
-        <input type="checkbox" class="form-check-input" value="quit" >Quit: Female/Male
+        <p><input type="checkbox" class="form-check-input" value="quit" >Quit: Female/Male<p>
       </label>
             </div>
           </form>
 
         </div>
-        <div class="col-9 border border-success ">
+        <div class="col-9  ">
           <h3 class="text-center">Chart</h3>
           <div class="charts" id="chart_1">
 
@@ -93,50 +93,50 @@
       <h2 class="text-center">The Actual Count in Enrollment, Graduated and Dropout of Female and Male with Years</h2>
       <hr class="my-3">
       <div class="row ">
-        <div class="col-3 border border-success ">
+        <div class="col-3  border-right">
           <h3 class="text-center">Data Queries</h3>
 
           <form role="form" id="q2_Form">
             <h5>Enrollment:</h5>
             <div class="form-check-inline">
               <label class="form-check-label">
-        <input type="checkbox" class="form-check-input q2_boxes" value="tfe" checked>Female
+       <p> <input type="checkbox" class="form-check-input q2_boxes" value="tfe" checked>Female<p>
       </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-        <input type="checkbox" class="form-check-input q2_boxes" value="tme" checked>Male
+        <p><input type="checkbox" class="form-check-input q2_boxes" value="tme" checked>Male<p>
       </label>
             </div>
 
             <h5 class="mt-1">Graduated:</h5>
             <div class="form-check-inline">
               <label class="form-check-label">
-        <input type="checkbox" class="form-check-input q2_boxes" value="tfg">Female
+       <p> <input type="checkbox" class="form-check-input q2_boxes" value="tfg">Female<p>
       </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-        <input type="checkbox" class="form-check-input q2_boxes" value="tmg">Male
+       <p> <input type="checkbox" class="form-check-input q2_boxes" value="tmg">Male<p>
       </label>
             </div>
 
             <h5 class="mt-1">Quit:</h5>
             <div class="form-check-inline">
               <label class="form-check-label">
-        <input type="checkbox" class="form-check-input q2_boxes" value="tfl">Female
+        <p><input type="checkbox" class="form-check-input q2_boxes" value="tfl">Female<p>
       </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-        <input type="checkbox" class="form-check-input q2_boxes" value="tml">Male
+        <p><input type="checkbox" class="form-check-input q2_boxes" value="tml">Male<p>
       </label>
             </div>
 
           </form>
 
         </div>
-        <div class="col-9 border border-success ">
+        <div class="col-9  ">
           <h3 class="text-center">Chart</h3>
           <div class="charts" id="chart_2">
 
@@ -150,12 +150,12 @@
       <h2 class="text-center">The Enrollment Count with Major Declaration Time of Female and Male</h2>
       <hr class="my-3">
       <div class="row ">
-        <div class="col-3 border border-success ">
+        <div class="col-3 border-right ">
           <h3 class="text-center">Data Queries</h3>
           <p>Female: <input type="checkbox" id="cb_female" onclick="display_func_female()" checked></p>
           <p>Male: <input type="checkbox" id="cb_male" onclick="display_func_male()" checked></p>
         </div>
-        <div class="col-9 border border-success ">
+        <div class="col-9  ">
           <h3 class="text-center">Chart</h3>
           <div class="row text-center">
             <div class="col" id='female_chart3'>
@@ -176,14 +176,21 @@
 
     <!-- vis section 4 -->
     <div class="vis container " id="vis_section_4">
-      <h2 class="text-center">The Race Distribution of Female and Male with year</h2>
+      <h2 class="text-center">The Race Distribution of Total Female and Male with year</h2>
       <hr class="my-3">
       <div class="row">
-        <div class="col-3 border border-success ">
+        <div class="col-3 border-right">
           <h3 class="text-center">Vis4 Description</h3>
-          <h4> We use color depth to indicate amount. Click on pie chart to zoom in; click on center to zoom out.</h4>
+          <h4> 
+          <br>We use color depth to indicate amount.</br></h4><h6> Click on pie chart to zoom in; click on center to zoom out.</h6>
+          <h6><br>Conclusions:</br><h6>
+          <h4><ul><li>Number of male students are much more than female students no matter which year.<h6>(first layer)</h6></li></ul>
+          <h4><ul><li>Number of students increased sharply after 2010 no matter which gender.<h6>(second layer after zooming in)</h6></li></ul>
+          <h4><ul><li>White, asian and hispanics are top dominated races no matter which year which gender.<h6>(third layer after zooming in)</h6></li></ul>
+
+
         </div>
-        <div class="col-9 border border-success ">
+        <div class="col-9  ">
           <h3 class="text-center">Chart</h3>
           <div class="charts" id="chart_4">
 

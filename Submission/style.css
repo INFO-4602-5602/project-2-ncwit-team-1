@@ -66,3 +66,36 @@ body {
   fill: none;
   pointer-events: all;
 }
+
+p {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+a{
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+h1{
+   font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+h2{
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+h3{
+font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+h4{
+ font-size: 16px;
+ font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+h5{
+ font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+h6{
+  font-weight: bold;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
