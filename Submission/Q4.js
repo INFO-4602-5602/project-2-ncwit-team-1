@@ -1,4 +1,4 @@
-
+//Reference: https://bl.ocks.org/mbostock/5944371
 var margin = {top: 260, right: 432, bottom: 315, left: 390},
     radius = 300 - 10;
 
@@ -211,8 +211,7 @@ d3v3.json("data/vis4.json", function(error, root) {
             })
             .text(d.parent.name+" "+d.name+"  "+"Percentage: "+d.per+"%")
             .attr("class", "label")
-            .attr("transform", "translate(0," + -50 + ")")
-            .attr("font-family","Arial");
+            .attr("transform", "translate(0," + -50 + ")");
             };
             function mouseOutPoint(d,i){
                 //Bell: Tooltips
@@ -227,13 +226,13 @@ d3v3.json("data/vis4.json", function(error, root) {
   }
 });
 
-function key(d) {
+function key(d) {       //get data's names 
   var k = [], p = d;
   while (p.depth) k.push(p.name), p = p.parent;
   return k.reverse().join(".");
 }
 
-function fill(d) {
+function fill(d) {    //decide the color to be filled
   var p = d;
   var p1 = d;
   while (p.depth > 1) p = p.parent;
