@@ -1,52 +1,59 @@
-
 #female_chart3 {
-	height: 360px;
-	margin-left: auto;
-	margin-right: 40%;
-	position: relative;
-	width: 500px;
+  height: 360px;
+  margin-left: auto;
+  padding-left: 100px;
+  /* margin-right: 40%; */
+  position: relative;
+  /* width: 500px; */
 }
+
 #male_chart3 {
-	height: 360px;
-	margin-left: auto;
-	margin-right: 40%;
-	position: relative;
-	width: 500px;
+  height: 360px;
+  margin-left: auto;
+  padding-right: 100px;
+  /* margin-right: 40%; */
+  position: relative;
+  /* width: 500px; */
 }
+
 .tooltip3rd_female {
-	background: rgba(0, 0, 0, 0.8);
-	box-shadow: 0 0 5px #999999;
-	color: #fff;
-	display: none;
-	font-size: 12px;
-	left: 10px;
-	padding: 10px;
-	position: absolute;
-	text-align: center;
-	top: 10px;
-	width: 100px;
-	z-index: 10;
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 5px #999999;
+  color: #fff;
+  display: none;
+  font-size: 12px;
+  left: 10px;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: 10px;
+  width: 100px;
+  z-index: 10;
 }
+
 .tooltip3rd_male {
-	background: rgba(0, 0, 0, 0.8);
-	box-shadow: 0 0 5px #999999;
-	color: #fff;
-	display: none;
-	font-size: 12px;
-	left: 10px;
-	padding: 10px;
-	position: absolute;
-	text-align: center;
-	top: 10px;
-	width: 100px;
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 5px #999999;
+  color: #fff;
+  display: none;
+  font-size: 12px;
+  right: 10px;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: 10px;
+  width: 100px;
 }
+
 .legend {
-	font-size: 12px;
+  font-size: 12px;
 }
+
 rect {
-	cursor: pointer;
-stroke-width: 2;
+  cursor: pointer;
+  stroke-width: 2;
 }
+
 rect.disabled {
-	fill: transparent !important;
+  fill: transparent !important;
 }

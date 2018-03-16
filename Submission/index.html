@@ -99,36 +99,36 @@
             <h5>Enrollment:</h5>
             <div class="form-check-inline">
               <label class="form-check-label">
-        <input type="checkbox" class="form-check-input category" id="enroll_F">Female
+        <input type="checkbox" class="form-check-input q2_boxes" value="tfe" checked>Female
       </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-        <input type="checkbox" class="form-check-input category" id="enroll_M">Male
+        <input type="checkbox" class="form-check-input q2_boxes" value="tme" checked>Male
       </label>
             </div>
 
             <h5 class="mt-1">Graduated:</h5>
             <div class="form-check-inline">
               <label class="form-check-label">
-        <input type="checkbox" class="form-check-input category" id="graduate_F">Female
+        <input type="checkbox" class="form-check-input q2_boxes" value="tfg">Female
       </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-        <input type="checkbox" class="form-check-input category" id="graduate_M">Male
+        <input type="checkbox" class="form-check-input q2_boxes" value="tmg">Male
       </label>
             </div>
 
             <h5 class="mt-1">Quit:</h5>
             <div class="form-check-inline">
               <label class="form-check-label">
-        <input type="checkbox" class="form-check-input category" id="quit_F">Female
+        <input type="checkbox" class="form-check-input q2_boxes" value="tfl">Female
       </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-        <input type="checkbox" class="form-check-input category" id="quit_M">Male
+        <input type="checkbox" class="form-check-input q2_boxes" value="tml">Male
       </label>
             </div>
 
@@ -151,23 +151,25 @@
       <div class="row ">
         <div class="col-3 border border-success ">
           <h3 class="text-center">Data Queries</h3>
-          <p>Female: <input type="checkbox" id="cb_female"  onclick="display_func_female()" checked></p>
-          <p>Male: <input type="checkbox" id="cb_male"  onclick="display_func_male()" checked></p>
+          <p>Female: <input type="checkbox" id="cb_female" onclick="display_func_female()" checked></p>
+          <p>Male: <input type="checkbox" id="cb_male" onclick="display_func_male()" checked></p>
         </div>
         <div class="col-9 border border-success ">
           <h3 class="text-center">Chart</h3>
-          <div id='female_chart3'>
-            <script>
-							test3rdidea_female();
-						</script>
+          <div class="row text-center">
+            <div class="col" id='female_chart3'>
+              <script>
+                test3rdidea_female();
+              </script>
+            </div>
+            <div class="col" id="male_chart3">
+              <script>
+                test3rdidea_male();
+              </script>
+            </div>
+          </div>
+
         </div>
-          <br/>
-          <div id="male_chart3">
-            <script>
-							test3rdidea_male();
-						</script>
-        </div>
-      </div>
       </div>
     </div>
 
