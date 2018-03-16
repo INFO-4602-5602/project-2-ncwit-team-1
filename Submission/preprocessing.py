@@ -84,6 +84,44 @@ def vis_4():
     vis_4 = pd.concat([vis_4_Female, vis_4_Male], axis = 1)
     vis_4.to_csv("data/vis_4_Race_perc_Year.csv")
 
+def vis_1_grade():
+    
+    vis_1_grade_enrolled_attr=["Freshmen, Female: Enrolled in DIFFERENT MAJOR (Fshm F)", "Freshmen, Female: Enrolled in SAME MAJOR (Fshm F)", "Freshmen, Male: Enrolled in DIFFERENT MAJOR (Fshm M)", "Freshmen, Male: Enrolled in SAME MAJOR (Fshm M)",\
+    "Sophomores, Female: Enrolled in DIFFERENT MAJOR (Sph. F)", "Sophomores, Female: Enrolled in SAME MAJOR (Sph. F)", "Sophomores, Male: Enrolled in DIFFERENT MAJOR (Sph. M)", "Sophomores, Male: Enrolled in SAME MAJOR (Sph. M)",\
+    "Juniors, Female: Enrolled in DIFFERENT MAJOR (Jun. F)", "Juniors, Female: Enrolled in SAME MAJOR (Jun. F)", "Juniors, Male: Enrolled in DIFFERENT MAJOR (Jun. M)", "Juniors, Male: Enrolled in SAME MAJOR (Jun. M)",\
+    "Seniors, Female: Enrolled in DIFFERENT MAJOR (Sen. F)", "Seniors, Female: Enrolled in SAME MAJOR (Sen. F)", "Seniors, Male: Enrolled in DIFFERENT MAJOR (Sen. M)", "Seniors, Male: Enrolled in SAME MAJOR (Sen. M)",\
+    "5th Yr Seniors, Female: Enrolled in DIFFERENT MAJOR (5 Sen F)", "5th Yr Seniors, Female: Enrolled in SAME MAJOR (5 Sen F)", "5th Yr Seniors, Male: Enrolled in DIFFERENT MAJOR (5 Sen M)", "5th Yr Seniors, Male: Enrolled in SAME MAJOR (5 Sen M)"]
+
+    vis_1_grade_Female = NCWIT_Data.groupby("School Year")[vis_1_grade_enrolled_attr].sum()
+    Freshmen_Female_Enrolled=vis_1_grade_Female["Freshmen, Female: Enrolled in DIFFERENT MAJOR (Fshm F)"]+vis_1_grade_Female["Freshmen, Female: Enrolled in SAME MAJOR (Fshm F)"]
+    Freshmen_Female_Enrolled.rename("Freshmen, Female: Enrolled")
+    Freshmen_Male_Enrolled=vis_1_grade_Female["Freshmen, Male: Enrolled in DIFFERENT MAJOR (Fshm M)"]+vis_1_grade_Female["Freshmen, Male: Enrolled in SAME MAJOR (Fshm M)"]
+    Freshmen_Male_Enrolled.rename("Freshmen, Male: Enrolled")
+    Sophomores_Female_Enrolled=vis_1_grade_Female["Sophomores, Female: Enrolled in DIFFERENT MAJOR (Sph. F)"]+vis_1_grade_Female["Sophomores, Female: Enrolled in SAME MAJOR (Sph. F)"]
+    Sophomores_Female_Enrolled.rename("Sophomores, Female: Enrolled")
+    Sophomores_Male_Enrolled=vis_1_grade_Female["Sophomores, Male: Enrolled in DIFFERENT MAJOR (Sph. M)"]+vis_1_grade_Female["Sophomores, Male: Enrolled in SAME MAJOR (Sph. M)"]
+    Sophomores_Male_Enrolled.rename("Sophomores, Male: Enrolled")
+    Juniors_Female_Enrolled=vis_1_grade_Female["Juniors, Female: Enrolled in DIFFERENT MAJOR (Jun. F)"]+vis_1_grade_Female["Juniors, Female: Enrolled in SAME MAJOR (Jun. F)"]
+    Juniors_Female_Enrolled.rename("Juniors, Female: Enrolled")
+    Juniors_Male_Enrolled=vis_1_grade_Female["Juniors, Male: Enrolled in DIFFERENT MAJOR (Jun. M)"]+vis_1_grade_Female["Juniors, Male: Enrolled in SAME MAJOR (Jun. M)"]
+    Juniors_Male_Enrolled.rename("Juniors, Male: Enrolled")
+    Seniors_Female_Enrolled=vis_1_grade_Female["Seniors, Female: Enrolled in DIFFERENT MAJOR (Sen. F)"]+vis_1_grade_Female["Seniors, Female: Enrolled in SAME MAJOR (Sen. F)"]
+    Seniors_Female_Enrolled.rename("Seniors, Female: Enrolled")
+    Seniors_Male_Enrolled=vis_1_grade_Female["Seniors, Male: Enrolled in DIFFERENT MAJOR (Sen. M)"]+vis_1_grade_Female["Seniors, Male: Enrolled in SAME MAJOR (Sen. M)"]
+    Seniors_Male_Enrolled.rename("Seniors, Male: Enrolled")
+    Yr5_Seniors_Female_Enrolled=vis_1_grade_Female["5th Yr Seniors, Female: Enrolled in DIFFERENT MAJOR (5 Sen F)"]+vis_1_grade_Female["5th Yr Seniors, Female: Enrolled in SAME MAJOR (5 Sen F)"]
+    Yr5_Seniors_Female_Enrolled.rename("Yr5_Seniors, Female: Enrolled")
+    Yr5_Seniors_Male_Enrolled=vis_1_grade_Female["5th Yr Seniors, Male: Enrolled in DIFFERENT MAJOR (5 Sen M)"]+vis_1_grade_Female["5th Yr Seniors, Male: Enrolled in SAME MAJOR (5 Sen M)"]
+    Yr5_Seniors_Male_Enrolled.rename("Yr5_Seniors, Male: Enrolled")
+    #print(vis_1_grade_Female["Freshmen, Female: Enrolled in DIFFERENT MAJOR (Fshm F)"])
+    #print(vis_1_grade_Female["Freshmen, Female: Enrolled in SAME MAJOR (Fshm F)"])
+    #t=pd.concat([Freshmen_Female_Enrolled,Freshmen_Male_Enrolled,Sophomores_Female_Enrolled,Sophomores_Male_Enrolled,Juniors_Female_Enrolled,Juniors_Male_Enrolled,Seniors_Female_Enrolled,Seniors_Male_Enrolled,Yr5_Seniors_Female_Enrolled,Yr5_Seniors_Male_Enrolled])
+    #t.to_csv("test.csv")
+
+    vis_1_grade_Graduated_Left_attr = ["Freshmen, Female: Graduated (Fshm F)","Freshmen, Female: Left Institution (not graduated) (Fshm F)","Freshmen, Male: Graduated (Fshm M)","Freshmen, Male: Left Institution (not graduated) (Fshm M)", "Sophomores, Female: Graduated (Sph. F)","Sophomores, Female: Left Institution (not graduated) (Sph. F)","Sophomores, Male: Graduated (Sph. M)","Sophomores, Male: Left Institution (not graduated) (Sph. M)", "Juniors, Female: Graduated (Jun. F)","Juniors, Female: Left Institution (not graduated) (Jun. F)","Juniors, Male: Graduated (Jun. M)","Juniors, Male: Left Institution (not graduated) (Jun. M)", "Seniors, Female: Graduated (Sen. F)","Seniors, Female: Left Institution (not graduated) (Sen. F)","Seniors, Male: Graduated (Sen. M)","Seniors, Male: Left Institution (not graduated) (Sen. M)", "5th Yr Seniors, Female: Graduated (5 Sen F)","5th Yr Seniors, Female: Left Institution (not graduated) (5 Sen F)","5th Yr Seniors, Male: Graduated (5 Sen M)","5th Yr Seniors, Male: Left Institution (not graduated) (5 Sen M)"]
+    vis_1_grade_Graduated_Left = NCWIT_Data.groupby("School Year")[vis_1_grade_Graduated_Left_attr].sum()
+
+
 if __name__ == "__main__":
 
     vis_4()
