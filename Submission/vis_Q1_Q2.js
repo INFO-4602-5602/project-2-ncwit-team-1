@@ -1,13 +1,15 @@
 /////////vis for Question 1 & 2/////////////
 
 //global variables
-<<<<<<< HEAD
+///////// HEAD
 var colNames = ['Female Enrollment', 'Male Enrollment', 'Female Graduated', 'Male Graduated', 'Female Quit', 'Male Quit'];
 var keys = ['tfe', 'tme', 'tfg', 'tmg', 'tfl', 'tml'];
 var years = ['2003-2004', '2004-2005', '2005-2006', '2006-2007', '2007-2008', '2008-2009', '2009-2010', '2010-2011', '2011-2012', '2012-2013', '2013-2014', '2014-2015', '2015-2016']
-=======
+//=======
+/*
 var colNames = ['Female Enrollment', 'Male Enrollment', 'Female Graduated', 'Male Graduated', 'Female Quit', 'Male Quit', 'Female/Male Enrollment', 'Female/Male Graduated', 'Female/Male Quit'];
->>>>>>> 1786aaaa1a38d2324160a8c5ca96835332c8f0d7
+*/
+/////// 1786aaaa1a38d2324160a8c5ca96835332c8f0d7
 
 
 //MarK: d3 visualization
@@ -25,13 +27,17 @@ var q1Height = 500 - q1Margin.top - q1Margin.bottom;
 var parseTime = d3.timeParse("%Y");
 
 var q1X = d3.scaleTime().range([0, q1Width]),
-    q1Y = d3.scaleLinear().range([q1Height, 0]),
-    q1Z = d3.scaleOrdinal(d3.schemeCategory10);
+  q1Y = d3.scaleLinear().range([q1Height, 0]),
+  q1Z = d3.scaleOrdinal(d3.schemeCategory10);
 
 var line = d3.line()
-    .curve(d3.curveLinear)
-    .x(function(d) { return q1X(d.year); })
-    .y(function(d) { return q1Y(d.ratio); });
+  .curve(d3.curveLinear)
+  .x(function(d) {
+    return q1X(d.year);
+  })
+  .y(function(d) {
+    return q1Y(d.ratio);
+  });
 
 //define svg
 var q1_svg = d3.select('#chart_1').append("svg")
@@ -59,53 +65,81 @@ function renderLineChart() {
       return {
         id: id,
         values: data.map(function(d) {
-          return {year: d.sy, ratio: d[id]};
+          return {
+            year: d.sy,
+            ratio: d[id]
+          };
         })
       };
     });
 
-    q1X.domain(d3.extent(data, function(d) { return d.sy; }));
+    q1X.domain(d3.extent(data, function(d) {
+      return d.sy;
+    }));
 
     q1Y.domain([
-      d3.min(categories, function(c) { return d3.min(c.values, function(d) { return d.ratio; }); }),
-      d3.max(categories, function(c) { return d3.max(c.values, function(d) { return d.ratio; }); })
+      d3.min(categories, function(c) {
+        return d3.min(c.values, function(d) {
+          return d.ratio;
+        });
+      }),
+      d3.max(categories, function(c) {
+        return d3.max(c.values, function(d) {
+          return d.ratio;
+        });
+      })
     ]);
 
-    q1Z.domain(categories.map(function(c) { return c.id; }));
+    q1Z.domain(categories.map(function(c) {
+      return c.id;
+    }));
 
     q1_svg.append("g")
-        .attr("class", "axis axis--x")
-        .attr("transform", "translate(0," + q1Height + ")")
-        .call(d3.axisBottom(q1X));
+      .attr("class", "axis axis--x")
+      .attr("transform", "translate(0," + q1Height + ")")
+      .call(d3.axisBottom(q1X));
 
     q1_svg.append("g")
-        .attr("class", "axis axis--y")
-        .call(d3.axisLeft(q1Y))
-        .append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", "0.71em")
-        .attr("fill", "none")
-        .text("Female/Male Ratio");
+      .attr("class", "axis axis--y")
+      .call(d3.axisLeft(q1Y))
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("fill", "none")
+      .text("Female/Male Ratio");
 
     var category = q1_svg.selectAll(".category")
-        .data(categories)
-        .enter().append("g")
-        .attr("class", "category");
+      .data(categories)
+      .enter().append("g")
+      .attr("class", "category");
 
     category.append("path")
-        .attr("class", "line")
-        .attr("d", function(d) { return line(d.values); })
-        .style("stroke", function(d) { return q1Z(d.id); });
+      .attr("class", "line")
+      .attr("d", function(d) {
+        return line(d.values);
+      })
+      .style("stroke", function(d) {
+        return q1Z(d.id);
+      });
 
     category.append("text")
-        .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
-        .attr("transform", function(d) { return "translate(" + q1X(d.value.year) + "," + q1Y(d.value.ratio) + ")"; })
-        .attr("x", 3)
-        .attr("dy", "0.35em")
-        .style("font", "10px sans-serif")
-        .text(function(d) { return d.id; });
+      .datum(function(d) {
+        return {
+          id: d.id,
+          value: d.values[d.values.length - 1]
+        };
+      })
+      .attr("transform", function(d) {
+        return "translate(" + q1X(d.value.year) + "," + q1Y(d.value.ratio) + ")";
+      })
+      .attr("x", 3)
+      .attr("dy", "0.35em")
+      .style("font", "10px sans-serif")
+      .text(function(d) {
+        return d.id;
       });
+  });
 
 };
 
