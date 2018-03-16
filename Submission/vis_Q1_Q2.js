@@ -99,7 +99,7 @@ function renderLineChart() {
     }));
 
     q1_svg.append("g")
-      .attr("class", "axis")
+      .attr("class", "axis axis-x")
       .attr("transform", "translate(0," + q1Height + ")")
       .call(d3.axisBottom(q1X));
 
@@ -146,6 +146,14 @@ function renderLineChart() {
         return q1Y(d.ratio);
       });
 
+    //empty points
+    var points = q1_svg.selectAll('.points')
+        .data(categories)
+        .enter()
+        .append('g')
+        .attr('class', 'points')
+        .append('text');
+
     var legend = q1_svg.selectAll(".legend")
         .data(q1colNames.slice())
         .enter().append("g")
@@ -185,18 +193,21 @@ function renderLineChart() {
       .on("mouseout", mouseout)
       .on("mousemove", mousemove);
 
+    //Reference: https://codepen.io/anon/pen/GxjERK
+    //on how to add Tooptips to lines
     var timeScales = data.map(function(id) { return q1X(id.sy); });
 
     function mouseover() {
       focus.style("display", null);
       d3.selectAll('.points text').style("display", null);
     }
+
     function mouseout() {
       focus.style("display", "none");
       d3.selectAll('.points text').style("display", "none");
     }
+
     function mousemove() {
-      console.log(data);
       var i = d3.bisect(timeScales, d3.mouse(this)[0], 1);
       var di = data[i-1];
       focus.attr("transform", "translate(" + q1X(di.sy) + ",0)");
