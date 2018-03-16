@@ -2,7 +2,8 @@
 
 //global variables
 var colNames = ['Female Enrollment', 'Male Enrollment', 'Female Graduated', 'Male Graduated', 'Female Quit', 'Male Quit'];
-
+var keys = ['tfe', 'tme', 'tfg', 'tmg', 'tfl', 'tml'];
+var years = ['2003-2004', '2004-2005', '2005-2006', '2006-2007', '2007-2008', '2008-2009', '2009-2010', '2010-2011', '2011-2012', '2012-2013', '2013-2014', '2014-2015', '2015-2016']
 
 
 //MarK: d3 visualization
@@ -38,9 +39,9 @@ var q2Y = d3.scaleLinear()
 
 //define xy axis
 var q2xAxis = d3.axisBottom()
-  .scale(q2X);
+  .scale(q2X0);
 var q2yAxis = d3.axisLeft()
-  .scale(q2Y);
+  .scale(q2Y).ticks(null, "s");
 
 //color scheme
 var color = d3.scaleOrdinal()
@@ -52,25 +53,27 @@ var q2_svg = d3.select('#chart_2').append("svg")
   .append("g")
   .attr("transform", "translate(" + q2Margin.left + "," + q2Margin.top + ")");
 
-d3.select('#q2_Form').selectAll('.category').on('change', function() {
-  var xs = d3.select('#q2_Form').selectAll('.category:checked');
-  var ids = xs[0].map(function(category) {
-    return category.id;
+d3.select('#q2_Form').selectAll('.q2_boxes').on('change', function() {
+  var checked_data = [];
+  var xs = d3.select('#q2_Form').selectAll('.q2_boxes').each(function() {
+    cb = d3.select(this);
+    if (cb.property("checked")) {
+      checked_data.push(cb.property("value"));
+    }
   });
-  updateBarChart(ids);
+  updateBarChart(checked_data);
 });
 renderBarChart();
+var init_keys = keys.slice(0, 2);
+updateBarChart(init_keys);
 
-//renderBarChart function
+
 function renderBarChart() {
   d3.csv("data/vis_1_Graduate_Dropout_rate_Year.csv", function(d, i, columns) {
     for (var i = 1, n = columns.length; i < n; ++i) d[columns[i]] = +d[columns[i]];
     return d;
   }, function(error, data) {
     if (error) throw error;
-
-    //var keys = data.columns.slice(1, 4);
-    var keys = ['tfg', 'tfl', 'tfe', 'tmg', 'tml', 'tme'];
 
     q2X0.domain(data.map(function(d) {
       return d.sy;
@@ -81,6 +84,49 @@ function renderBarChart() {
         return d[key];
       });
     })]).nice();
+
+    // x axis
+    q2_svg.append("g")
+      .attr("class", "q2axis_x")
+      .attr("transform", "translate(0," + q2Height + ")")
+      .call(d3.axisBottom(q2X0));
+
+    //y axis
+    q2_svg.append("g")
+      .attr("class", "q2axis_y")
+      .call(q2yAxis)
+      .append("text")
+      .attr("x", 2)
+      .attr("y", q2Y(q2Y.ticks().pop()) + 0.5)
+      .attr("dy", "0.32em")
+      .attr("fill", "#000")
+      .attr("font-weight", "bold")
+      .attr("text-anchor", "start")
+      .text("Count");
+  });
+
+}
+
+//renderBarChart function
+function updateBarChart(keys) {
+  d3.csv("data/vis_1_Graduate_Dropout_rate_Year.csv", function(d, i, columns) {
+    for (var i = 1, n = columns.length; i < n; ++i) d[columns[i]] = +d[columns[i]];
+    return d;
+  }, function(error, data) {
+    if (error) throw error;
+
+    q2X0.domain(data.map(function(d) {
+      return d.sy;
+    }));
+    q2X.domain(keys).rangeRound([0, q2X0.bandwidth()]);
+    q2Y.domain([0, d3.max(data, function(d) {
+      return d3.max(keys, function(key) {
+        return d[key];
+      });
+    })]).nice();
+
+    q2_svg.selectAll('.q2axis_x').call(q2xAxis);
+    q2_svg.selectAll('.q2axis_y').call(q2yAxis);
 
     q2_svg.append("g")
       .selectAll("g")
@@ -113,30 +159,14 @@ function renderBarChart() {
         return color(d.key);
       });
 
-    // x axis
-    q2_svg.append("g")
-      .attr("class", "axis")
-      .attr("transform", "translate(0," + q2Height + ")")
-      .call(d3.axisBottom(q2X0));
-
-    q2_svg.append("g")
-      .attr("class", "axis")
-      .call(d3.axisLeft(q2Y).ticks(null, "s"))
-      .append("text")
-      .attr("x", 2)
-      .attr("y", q2Y(q2Y.ticks().pop()) + 0.5)
-      .attr("dy", "0.32em")
-      .attr("fill", "#000")
-      .attr("font-weight", "bold")
-      .attr("text-anchor", "start")
-      .text("Count");
+    q2_svg.exit().transition().attr("height", 0).remove();
 
     var legend = q2_svg.append("g")
       .attr("font-family", "sans-serif")
       .attr("font-size", 10)
       .attr("text-anchor", "end")
       .selectAll("g")
-      .data(keys.slice().reverse())
+      .data(colNames.slice())
       .enter().append("g")
       .attr("transform", function(d, i) {
         return "translate(0," + i * 20 + ")";
@@ -155,9 +185,5 @@ function renderBarChart() {
       .text(function(d) {
         return d;
       });
-
-
-
-
   });
 }
