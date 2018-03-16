@@ -1,18 +1,113 @@
 /////////vis for Question 1 & 2/////////////
 
 //global variables
-var colNames = ['Female Enrollment', 'Male Enrollment', 'Female Graduated', 'Male Graduated', 'Female Quit', 'Male Quit'];
-
+var colNames = ['Female Enrollment', 'Male Enrollment', 'Female Graduated', 'Male Graduated', 'Female Quit', 'Male Quit', 'Female/Male Enrollment', 'Female/Male Graduated', 'Female/Male Quit'];
 
 
 //MarK: d3 visualization
 
 //MarK: Q1 line graph
+var q1Margin = {
+  top: 20,
+  right: 20,
+  bottom: 30,
+  left: 40
+};
+var q1Width = 650 - q1Margin.left - q1Margin.right;
+var q1Height = 500 - q1Margin.top - q1Margin.bottom;
 
+var parseTime = d3.timeParse("%Y");
 
+var x = d3.scaleTime().range([0, q1Width]),
+    y = d3.scaleLinear().range([q1Height, 0]),
+    z = d3.scaleOrdinal(d3.schemeCategory10);
 
+var line = d3.line()
+    .curve(d3.curveLinear)
+    .x(function(d) { return x(d.year); })
+    .y(function(d) { return y(d.ratio); });
 
+//define svg
+var q1_svg = d3.select('#chart_1').append("svg")
+  .attr("width", q1Width + q1Margin.left + q1Margin.right)
+  .attr("height", q1Height + q1Margin.top + q1Margin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + q1Margin.left + "," + q1Margin.top + ")");
 
+d3.select('#q1_Form').selectAll('.category').on('change', function() {
+  var xs = d3.select('#q1_Form').selectAll('.category:checked');
+  var ids = xs[0].map(function(category) {
+    return category.id;
+  });
+  updateLineChart(ids);
+});
+renderLineChart();
+
+//renderLineChart function
+function renderLineChart() {
+  d3.csv("data/vis_1_Graduate_Dropout_rate_Year.csv", type, function(error, data) {
+    if (error) throw error;
+
+    //select ratios: 'fmg', 'fml', 'fme'
+    var categories = data.columns.slice(13).map(function(id) {
+      return {
+        id: id,
+        values: data.map(function(d) {
+          return {year: d.sy, ratio: d[id]};
+        })
+      };
+    });
+
+    x.domain(d3.extent(data, function(d) { return d.sy; }));
+
+    y.domain([
+      d3.min(categories, function(c) { return d3.min(c.values, function(d) { return d.ratio; }); }),
+      d3.max(categories, function(c) { return d3.max(c.values, function(d) { return d.ratio; }); })
+    ]);
+
+    z.domain(categories.map(function(c) { return c.id; }));
+
+    q1_svg.append("g")
+        .attr("class", "axis axis--x")
+        .attr("transform", "translate(0," + q1Height + ")")
+        .call(d3.axisBottom(x));
+
+    q1_svg.append("g")
+        .attr("class", "axis axis--y")
+        .call(d3.axisLeft(y))
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", "0.71em")
+        .attr("fill", "none")
+        .text("Female/Male Ratio");
+
+    var category = q1_svg.selectAll(".category")
+        .data(categories)
+        .enter().append("g")
+        .attr("class", "category");
+
+    category.append("path")
+        .attr("class", "line")
+        .attr("d", function(d) { return line(d.values); })
+        .style("stroke", function(d) { return z(d.id); });
+
+    category.append("text")
+        .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
+        .attr("transform", function(d) { return "translate(" + x(d.value.year) + "," + y(d.value.ratio) + ")"; })
+        .attr("x", 3)
+        .attr("dy", "0.35em")
+        .style("font", "10px sans-serif")
+        .text(function(d) { return d.id; });
+      });
+
+};
+
+function type(d, _, columns) {
+  d.sy = parseTime(d.sy);
+  for (var i = 1, n = columns.length, c; i < n; ++i) d[c = columns[i]] = +d[c];
+  return d;
+}
 
 //MarK:Q2 bar chart
 //set vis2 margin and width/height
