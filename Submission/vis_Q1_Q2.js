@@ -32,7 +32,6 @@ var q1X = d3.scaleTime().range([0, q1Width]),
 
 var q1color = d3.scaleOrdinal(d3.schemeCategory10);
 
-
 var line = d3.line()
     .curve(d3.curveMonotoneX)
     .x(function(d) {
@@ -41,11 +40,6 @@ var line = d3.line()
     .y(function(d) {
       return q1Y(d.ratio);
     });
-
-//add tooptip
-var tooltip = d3.select('#chart_1').append("p")
-    .attr("class", "tooltip")
-    .style("opacity", 0);
 
 //define svg
 var q1_svg = d3.select('#chart_1').append("svg")
@@ -135,26 +129,22 @@ function renderLineChart() {
         return q1Z(d.id);
       });
 
-    category.selectAll(".dot")
+    category
+      .style("fill", "#FFF")
+      .style("stroke", function(d) { return q1Z(d.id); })
+      .selectAll(".dot")
       .data(function(d){
         return d.values
       })
       .enter()
       .append("circle")
-      .attr("r", 3)
+      .attr("r", 4)
       .attr("cx", function(d){
         return q1X(d.year);
       })
       .attr("cy", function(d){
         return q1Y(d.ratio);
-      })
-      .on("click", function(d) {
-       tooltip.transition()
-            .duration(100)
-            .style("opacity", .9);
-       tooltip.html("(" + d.year + ", " + d.ratio + ")")
-            .style("left", (d3.event.pageX + 7) + "px")
-            .style("top", (d3.event.pageY - 22) + "px");});
+      });
 
     var legend = q1_svg.selectAll(".legend")
         .data(q1colNames.slice())
@@ -176,6 +166,46 @@ function renderLineChart() {
         .attr("dy", ".35em")
         .style("text-anchor", "end")
         .text(function(d) { return d;})
+
+    var focus = q1_svg.append('g')
+      .attr('class', 'focus')
+      .style('display', 'none');
+
+    focus.append('line')
+      .attr('class', 'x-hover-line hover-line')
+      .attr('y1' , 0)
+      .attr('y2', q1Height);
+
+    q1_svg.append('rect')
+      .attr("transform", "translate(" + q1Margin.left + "," + q1Margin.top + ")")
+      .attr("class", "overlay")
+      .attr("width", q1Width)
+      .attr("height", q1Height)
+      .on("mouseover", mouseover)
+      .on("mouseout", mouseout)
+      .on("mousemove", mousemove);
+
+    var timeScales = data.map(function(id) { return q1X(id.sy); });
+
+    function mouseover() {
+      focus.style("display", null);
+      d3.selectAll('.points text').style("display", null);
+    }
+    function mouseout() {
+      focus.style("display", "none");
+      d3.selectAll('.points text').style("display", "none");
+    }
+    function mousemove() {
+      console.log(data);
+      var i = d3.bisect(timeScales, d3.mouse(this)[0], 1);
+      var di = data[i-1];
+      focus.attr("transform", "translate(" + q1X(di.sy) + ",0)");
+      d3.selectAll('.points text')
+        .attr('x', function(d) { return q1X(di.sy) + 15; })
+        .attr('y', function(d) { return q1Y(d.values[i-1].ratio); })
+        .text(function(d) { return d.values[i-1].ratio; })
+        .style('fill', function(d) { return q1Z(d.id); });
+    }
 
   });
 
