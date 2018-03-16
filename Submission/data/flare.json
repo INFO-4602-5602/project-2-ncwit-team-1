@@ -2,10 +2,10 @@
  "name": "flare",
  "children": [
   {
-   "name": "Female",
+   "name": "F",
    "children": [
     {
-     "name": "2003-2004",
+     "name": "2003",
      "children": [
       {
         "name": "Race",
@@ -21,7 +21,7 @@
      ]
     },
     {
-     "name": "2004-2005",
+     "name": "2004",
      "children": [
       {
         "name": "Race",
@@ -37,7 +37,7 @@
      ]
     },
     {
-     "name": "2005-2006",
+     "name": "2005",
      "children": [
       {
         "name": "Race",
@@ -53,7 +53,7 @@
      ]
     },
     {
-     "name": "2006-2007",
+     "name": "2006",
      "children": [
       {
         "name": "Race",
@@ -69,7 +69,7 @@
      ]
     },
     {
-     "name": "2007-2008",
+     "name": "2007",
      "children": [
       {
         "name": "Race",
@@ -85,7 +85,7 @@
      ]
     },
     {
-     "name": "2008-2009",
+     "name": "2008",
      "children": [
       {
         "name": "Race",
@@ -101,7 +101,7 @@
      ]
     },
     {
-     "name": "2009-2010",
+     "name": "2009",
      "children": [
       {
         "name": "Race",
@@ -117,7 +117,7 @@
      ]
     },
     {
-     "name": "2010-2011",
+     "name": "2010",
      "children": [
       {
         "name": "Race",
@@ -133,7 +133,7 @@
      ]
     },
     {
-     "name": "2011-2012",
+     "name": "2011",
      "children": [
       {
         "name": "Race",
@@ -149,7 +149,7 @@
      ]
     },
     {
-     "name": "2012-2013",
+     "name": "2012",
      "children": [
       {
         "name": "Race",
@@ -164,7 +164,7 @@
       }
      ]
     },{
-     "name": "2013-2014",
+     "name": "2013",
      "children": [
       {
         "name": "Race",
@@ -180,7 +180,7 @@
      ]
     },
     {
-     "name": "2014-2015",
+     "name": "2014",
      "children": [
       {
         "name": "Race",
@@ -196,7 +196,7 @@
      ]
     },
     {
-     "name": "2015-2016",
+     "name": "2015",
      "children": [
       {
         "name": "Race",
@@ -212,7 +212,7 @@
      ]
     },
     {
-     "name": "2016-2017",
+     "name": "2016",
      "children": [
       {
         "name": "Race",
@@ -230,227 +230,227 @@
    ]
   },
   {
-   "name": "Male",
+   "name": "M",
    "children": [
     {
-     "name": "2003-2004",
+     "name": "2003",
      "children": [
       {
         "name": "Race",
         "children": [
-        {"name": "Asian", "size": 58.92857142857143},
-        {"name": "Black", "size": 5.51948051948052},
-        {"name": "Hispanics", "size": 5.51948051948052},
-        {"name": "Indian", "size": 0.3246753246753247},
-        {"name": "Hawaii", "size": 0.0},
-        {"name": "White", "size": 29.707792207792206}
+        {"name": "Asian", "size": 43.78109452736319},
+        {"name": "Black", "size": 2.7509511267193445},
+        {"name": "Hispanics", "size": 5.736025753585016},
+        {"name": "Indian", "size": 0.2048580626280363},
+        {"name": "Hawaii", "size": 0.1463271875914545},
+        {"name": "White", "size": 47.380743342112964}
         ]
       }
      ]
     },
     {
-     "name": "2004-2005",
+     "name": "2004",
      "children": [
       {
         "name": "Race",
         "children": [
-        {"name": "Asian", "size": 58.92857142857143},
-        {"name": "Black", "size": 5.51948051948052},
-        {"name": "Hispanics", "size": 5.51948051948052},
-        {"name": "Indian", "size": 0.3246753246753247},
-        {"name": "Hawaii", "size": 0.0},
-        {"name": "White", "size": 29.707792207792206}
+        {"name": "Asian", "size": 24.376650044001174},
+        {"name": "Black", "size": 5.925491346435905},
+        {"name": "Hispanics", "size": 5.676151364036374},
+        {"name": "Indian", "size": 0.2200058668231153},
+        {"name": "Hawaii", "size": 0.557348195951892},
+        {"name": "White", "size": 63.24435318275154}
         ]
       }
      ]
     },
     {
-     "name": "2005-2006",
+     "name": "2005",
      "children": [
       {
         "name": "Race",
         "children": [
-        {"name": "Asian", "size": 58.92857142857143},
-        {"name": "Black", "size": 5.51948051948052},
-        {"name": "Hispanics", "size": 5.51948051948052},
-        {"name": "Indian", "size": 0.3246753246753247},
-        {"name": "Hawaii", "size": 0.0},
-        {"name": "White", "size": 29.707792207792206}
+        {"name": "Asian", "size": 20.220588235294116},
+        {"name": "Black", "size": 4.273897058823529},
+        {"name": "Hispanics", "size": 5.667892156862745},
+        {"name": "Indian", "size": 0.35232843137254904},
+        {"name": "Hawaii", "size": 0.12254901960784313},
+        {"name": "White", "size": 69.36274509803921}
         ]
       }
      ]
     },
     {
-     "name": "2006-2007",
+     "name": "2006",
      "children": [
       {
         "name": "Race",
         "children": [
-        {"name": "Asian", "size": 58.92857142857143},
-        {"name": "Black", "size": 5.51948051948052},
-        {"name": "Hispanics", "size": 5.51948051948052},
-        {"name": "Indian", "size": 0.3246753246753247},
-        {"name": "Hawaii", "size": 0.0},
-        {"name": "White", "size": 29.707792207792206}
+        {"name": "Asian", "size": 13.246633674761192},
+        {"name": "Black", "size": 2.79663942916331},
+        {"name": "Hispanics", "size": 7.365634710553573},
+        {"name": "Indian", "size": 0.4488433651743584},
+        {"name": "Hawaii", "size": 0.0805616296466797},
+        {"name": "White", "size": 76.06168719070088}
         ]
       }
      ]
     },
     {
-     "name": "2007-2008",
+     "name": "2007",
      "children": [
       {
         "name": "Race",
         "children": [
-        {"name": "Asian", "size": 58.92857142857143},
-        {"name": "Black", "size": 5.51948051948052},
-        {"name": "Hispanics", "size": 5.51948051948052},
-        {"name": "Indian", "size": 0.3246753246753247},
-        {"name": "Hawaii", "size": 0.0},
-        {"name": "White", "size": 29.707792207792206}
+        {"name": "Asian", "size": 11.691130866239405},
+        {"name": "Black", "size": 3.6903039073806077},
+        {"name": "Hispanics", "size": 8.124870787678313},
+        {"name": "Indian", "size": 0.5065123010130246},
+        {"name": "Hawaii", "size": 0.05168492867479843},
+        {"name": "White", "size": 75.93549720901385}
         ]
       }
      ]
     },
     {
-     "name": "2008-2009",
+     "name": "2008",
      "children": [
       {
         "name": "Race",
         "children": [
-        {"name": "Asian", "size": 58.92857142857143},
-        {"name": "Black", "size": 5.51948051948052},
-        {"name": "Hispanics", "size": 5.51948051948052},
-        {"name": "Indian", "size": 0.3246753246753247},
-        {"name": "Hawaii", "size": 0.0},
-        {"name": "White", "size": 29.707792207792206}
+        {"name": "Asian", "size": 15.751472544176325},
+        {"name": "Black", "size": 4.724808410918994},
+        {"name": "Hispanics", "size": 7.201216036481094},
+        {"name": "Indian", "size": 0.5890176705301159},
+        {"name": "Hawaii", "size": 0.1330039901197036},
+        {"name": "White", "size": 71.60048134777377}
         ]
       }
      ]
     },
     {
-     "name": "2009-2010",
+     "name": "2009",
      "children": [
       {
         "name": "Race",
         "children": [
-        {"name": "Asian", "size": 58.92857142857143},
-        {"name": "Black", "size": 5.51948051948052},
-        {"name": "Hispanics", "size": 5.51948051948052},
-        {"name": "Indian", "size": 0.3246753246753247},
-        {"name": "Hawaii", "size": 0.0},
-        {"name": "White", "size": 29.707792207792206}
+        {"name": "Asian", "size": 14.478626363798963},
+        {"name": "Black", "size": 4.556429976748346},
+        {"name": "Hispanics", "size": 14.992845644786264},
+        {"name": "Indian", "size": 0.532105169021642},
+        {"name": "Hawaii", "size": 0.2727597925236988},
+        {"name": "White", "size": 65.16723305312108}
         ]
       }
      ]
     },
     {
-     "name": "2010-2011",
+     "name": "2010",
      "children": [
       {
         "name": "Race",
         "children": [
-        {"name": "Asian", "size": 58.92857142857143},
-        {"name": "Black", "size": 5.51948051948052},
-        {"name": "Hispanics", "size": 5.51948051948052},
-        {"name": "Indian", "size": 0.3246753246753247},
-        {"name": "Hawaii", "size": 0.0},
-        {"name": "White", "size": 29.707792207792206}
+        {"name": "Asian", "size": 15.303035029164977},
+        {"name": "Black", "size": 4.79740478492779},
+        {"name": "Hispanics", "size": 13.456439689322812},
+        {"name": "Indian", "size": 0.4491718394210674},
+        {"name": "Hawaii", "size": 0.327521132911195},
+        {"name": "White", "size": 65.66642752425216}
         ]
       }
      ]
     },
     {
-     "name": "2011-2012",
+     "name": "2011",
      "children": [
       {
         "name": "Race",
         "children": [
-        {"name": "Asian", "size": 58.92857142857143},
-        {"name": "Black", "size": 5.51948051948052},
-        {"name": "Hispanics", "size": 5.51948051948052},
-        {"name": "Indian", "size": 0.3246753246753247},
-        {"name": "Hawaii", "size": 0.0},
-        {"name": "White", "size": 29.707792207792206}
+        {"name": "Asian", "size": 16.476719395678153},
+        {"name": "Black", "size": 4.927223435896086},
+        {"name": "Hispanics", "size": 13.957834337904352},
+        {"name": "Indian", "size": 0.40796988919011395},
+        {"name": "Hawaii", "size": 0.23688574211038876},
+        {"name": "White", "size": 63.993367199220906}
         ]
       }
      ]
     },
     {
-     "name": "2012-2013",
+     "name": "2012",
      "children": [
       {
         "name": "Race",
         "children": [
-        {"name": "Asian", "size": 58.92857142857143},
-        {"name": "Black", "size": 5.51948051948052},
-        {"name": "Hispanics", "size": 5.51948051948052},
-        {"name": "Indian", "size": 0.3246753246753247},
-        {"name": "Hawaii", "size": 0.0},
-        {"name": "White", "size": 29.707792207792206}
+        {"name": "Asian", "size": 18.630323851866823},
+        {"name": "Black", "size": 5.335219522053251},
+        {"name": "Hispanics", "size": 11.635426665993029},
+        {"name": "Indian", "size": 0.36881725862678727},
+        {"name": "Hawaii", "size": 0.2551407063103117},
+        {"name": "White", "size": 63.7750719951498}
         ]
       }
      ]
     },{
-     "name": "2013-2014",
+     "name": "2013",
      "children": [
       {
         "name": "Race",
         "children": [
-        {"name": "Asian", "size": 58.92857142857143},
-        {"name": "Black", "size": 5.51948051948052},
-        {"name": "Hispanics", "size": 5.51948051948052},
-        {"name": "Indian", "size": 0.3246753246753247},
-        {"name": "Hawaii", "size": 0.0},
-        {"name": "White", "size": 29.707792207792206}
+        {"name": "Asian", "size": 19.498152444788175},
+        {"name": "Black", "size": 4.459912348543439},
+        {"name": "Hispanics", "size": 12.894216722522987},
+        {"name": "Indian", "size": 0.39099424250236314},
+        {"name": "Hawaii", "size": 0.27928160178740224},
+        {"name": "White", "size": 62.47744263985563}
         ]
       }
      ]
     },
     {
-     "name": "2014-2015",
+     "name": "2014",
      "children": [
       {
         "name": "Race",
         "children": [
-        {"name": "Asian", "size": 58.92857142857143},
-        {"name": "Black", "size": 5.51948051948052},
-        {"name": "Hispanics", "size": 5.51948051948052},
-        {"name": "Indian", "size": 0.3246753246753247},
-        {"name": "Hawaii", "size": 0.0},
-        {"name": "White", "size": 29.707792207792206}
+        {"name": "Asian", "size": 21.0124203301193},
+        {"name": "Black", "size": 4.698480143814349},
+        {"name": "Hispanics", "size": 13.188429481941494},
+        {"name": "Indian", "size": 0.42694884785095605},
+        {"name": "Hawaii", "size": 0.2553521817290407},
+        {"name": "White", "size": 60.41836901454486}
         ]
       }
      ]
     },
     {
-     "name": "2015-2016",
+     "name": "2015",
      "children": [
       {
         "name": "Race",
         "children": [
-        {"name": "Asian", "size": 58.92857142857143},
-        {"name": "Black", "size": 5.51948051948052},
-        {"name": "Hispanics", "size": 5.51948051948052},
-        {"name": "Indian", "size": 0.3246753246753247},
-        {"name": "Hawaii", "size": 0.0},
-        {"name": "White", "size": 29.707792207792206}
+        {"name": "Asian", "size": 20.98599940422997},
+        {"name": "Black", "size": 4.967232648197796},
+        {"name": "Hispanics", "size": 12.83139708072684},
+        {"name": "Indian", "size": 0.48406315162347335},
+        {"name": "Hawaii", "size": 0.2532022639261245},
+        {"name": "White", "size": 60.4781054512958}
         ]
       }
      ]
     },
     {
-     "name": "2016-2017",
+     "name": "2016",
      "children": [
       {
         "name": "Race",
         "children": [
-        {"name": "Asian", "size": 58.92857142857143},
-        {"name": "Black", "size": 5.51948051948052},
-        {"name": "Hispanics", "size": 5.51948051948052},
-        {"name": "Indian", "size": 0.3246753246753247},
-        {"name": "Hawaii", "size": 0.0},
-        {"name": "White", "size": 29.707792207792206}
+        {"name": "Asian", "size": 23.813270390768423},
+        {"name": "Black", "size": 4.003846490077804},
+        {"name": "Hispanics", "size": 11.30343561500131},
+        {"name": "Indian", "size": 0.1748404580820002},
+        {"name": "Hawaii", "size": 0.13987236646560014},
+        {"name": "White", "size": 60.56473467960486}
         ]
       }
      ]
