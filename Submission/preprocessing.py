@@ -72,17 +72,17 @@ def vis_4():
     vis_4_Female_attr = ["Totals, Female: Asian (Tot. F)", "Totals, Female: Black/African American (Tot. F)", "Totals, Female: Hispanics of any race (Tot. F)", "Totals, Female: American Indian/Alaska Native (Tot. F)", "Totals, Female: Native Hawaiian/Other Pacific Islander (Tot. F)", "Totals, Female: White (Tot. F)"]
     # export
     vis_4_Female = NCWIT_Data.groupby("School Year")[vis_4_Female_attr].sum()
-    vis_4_Female = vis_4_Female.apply(lambda x: 100 * x / float(x.sum()), axis = 1)
+    #vis_4_Female = vis_4_Female.apply(lambda x: 100 * x / float(x.sum()), axis = 1)
 
     # attributes
     vis_4_Male_attr = ["Totals, Male: Asian (Tot. M)", "Totals, Male: Black/African American (Tot. M)", "Totals, Male: Hispanics of any race (Tot. M)", "Totals, Male: American Indian/Alaska Native (Tot. M)", "Totals, Male: Native Hawaiian/Other Pacific Islander (Tot. M)", "Totals, Male: White (Tot. M)"]
     # export
     vis_4_Male = NCWIT_Data.groupby("School Year")[vis_4_Male_attr].sum()
-    vis_4_Male = vis_4_Male.apply(lambda x: 100 * x / float(x.sum()), axis = 1)
+    #vis_4_Male = vis_4_Male.apply(lambda x: 100 * x / float(x.sum()), axis = 1)
 
     # combine Female & Male
     vis_4 = pd.concat([vis_4_Female, vis_4_Male], axis = 1)
-    vis_4.to_csv("data/vis_4_Race_perc_Year.csv")
+    vis_4.to_csv("data/vis_4_Race_Year.csv")
 
 def vis_1_grade():
     
