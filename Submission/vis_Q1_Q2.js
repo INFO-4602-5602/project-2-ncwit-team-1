@@ -9,6 +9,7 @@ var years = ['2003-2004', '2004-2005', '2005-2006', '2006-2007', '2007-2008', '2
 /*
 var colNames = ['Female Enrollment', 'Male Enrollment', 'Female Graduated', 'Male Graduated', 'Female Quit', 'Male Quit', 'Female/Male Enrollment', 'Female/Male Graduated', 'Female/Male Quit'];
 */
+var q1colNames = ['Female/Male Graduated Ratio', 'Female/Male Quit Ratio', 'Female/Male Enrollment Ratio']
 
 
 //MarK: d3 visualization
@@ -29,6 +30,9 @@ var q1X = d3.scaleTime().range([0, q1Width]),
     q1Y = d3.scaleLinear().range([q1Height, 0]),
     q1Z = d3.scaleOrdinal(d3.schemeCategory10);
 
+var q1color = d3.scaleOrdinal(d3.schemeCategory10);
+
+
 var line = d3.line()
     .curve(d3.curveMonotoneX)
     .x(function(d) {
@@ -37,6 +41,11 @@ var line = d3.line()
     .y(function(d) {
       return q1Y(d.ratio);
     });
+
+//add tooptip
+var tooltip = d3.select('#chart_1').append("p")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
 
 //define svg
 var q1_svg = d3.select('#chart_1').append("svg")
@@ -126,23 +135,6 @@ function renderLineChart() {
         return q1Z(d.id);
       });
 
-    category.append("text")
-      .datum(function(d) {
-        return {
-          id: d.id,
-          value: d.values[d.values.length - 1]
-        };
-      })
-      .attr("transform", function(d) {
-        return "translate(" + q1X(d.value.year) + "," + q1Y(d.value.ratio) + ")";
-      })
-      .attr("x", 3)
-      .attr("dy", "0.35em")
-      .style("font", "10px sans-serif")
-      .text(function(d) {
-        return d.id;
-      });
-
     category.selectAll(".dot")
       .data(function(d){
         return d.values
@@ -156,24 +148,30 @@ function renderLineChart() {
       .attr("cy", function(d){
         return q1Y(d.ratio);
       })
+      .on("click", function(d) {
+       tooltip.transition()
+            .duration(100)
+            .style("opacity", .9);
+       tooltip.html("(" + d.year + ", " + d.ratio + ")")
+            .style("left", (d3.event.pageX + 7) + "px")
+            .style("top", (d3.event.pageY - 22) + "px");});
 
-    //draw legend
-    var legend = svg.selectAll(".legend")
-        .data(q1color.domain())
+    var legend = q1_svg.selectAll(".legend")
+        .data(q1colNames.slice())
         .enter().append("g")
         .attr("class", "legend")
         .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
-    //draw legend colored rectangless
-    legend.append("rect")
-        .attr("x", q1Width - 18)
-        .attr("width", 18)
-        .attr("height", 18)
-        .style("fill", q1color);
+    legend.append("line")
+        .attr("x1", q1Width - 40)
+        .attr("x2", q1Width)
+        .attr("y1", 10)
+        .attr("y2", 10)
+        .style("stroke", q1color)
+        .attr("class", "line");
 
-    //draw legend text
     legend.append("text")
-        .attr("x", q1Width - 24)
+        .attr("x", q1Width - 45)
         .attr("y", 9)
         .attr("dy", ".35em")
         .style("text-anchor", "end")
