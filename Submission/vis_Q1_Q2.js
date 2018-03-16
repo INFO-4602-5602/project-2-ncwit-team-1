@@ -9,7 +9,6 @@ var years = ['2003-2004', '2004-2005', '2005-2006', '2006-2007', '2007-2008', '2
 /*
 var colNames = ['Female Enrollment', 'Male Enrollment', 'Female Graduated', 'Male Graduated', 'Female Quit', 'Male Quit', 'Female/Male Enrollment', 'Female/Male Graduated', 'Female/Male Quit'];
 */
-/////// 1786aaaa1a38d2324160a8c5ca96835332c8f0d7
 
 
 //MarK: d3 visualization
@@ -27,8 +26,8 @@ var q1Height = 500 - q1Margin.top - q1Margin.bottom;
 var parseTime = d3.timeParse("%Y");
 
 var q1X = d3.scaleTime().range([0, q1Width]),
-  q1Y = d3.scaleLinear().range([q1Height, 0]),
-  q1Z = d3.scaleOrdinal(d3.schemeCategory10);
+    q1Y = d3.scaleLinear().range([q1Height, 0]),
+    q1Z = d3.scaleOrdinal(d3.schemeCategory10);
 
 var line = d3.line()
     .curve(d3.curveMonotoneX)
@@ -97,18 +96,20 @@ function renderLineChart() {
     }));
 
     q1_svg.append("g")
-      .attr("class", "axis axis--x")
+      .attr("class", "axis")
       .attr("transform", "translate(0," + q1Height + ")")
       .call(d3.axisBottom(q1X));
 
     q1_svg.append("g")
-      .attr("class", "axis axis--y")
+      .attr("class", "axis")
       .call(d3.axisLeft(q1Y))
       .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", "0.71em")
-      .attr("fill", "none")
+      .attr("x", 2)
+      .attr("y", q1Y(q1Y.ticks().pop()) + 0.5)
+      .attr("dy", "0.32em")
+      .attr("fill", "#000")
+      .attr("font-weight", "bold")
+      .attr("text-anchor", "start")
       .text("Female/Male Ratio");
 
     var category = q1_svg.selectAll(".category")
@@ -155,6 +156,28 @@ function renderLineChart() {
       .attr("cy", function(d){
         return q1Y(d.ratio);
       })
+
+    //draw legend
+    var legend = svg.selectAll(".legend")
+        .data(q1color.domain())
+        .enter().append("g")
+        .attr("class", "legend")
+        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+    //draw legend colored rectangless
+    legend.append("rect")
+        .attr("x", q1Width - 18)
+        .attr("width", 18)
+        .attr("height", 18)
+        .style("fill", q1color);
+
+    //draw legend text
+    legend.append("text")
+        .attr("x", q1Width - 24)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .style("text-anchor", "end")
+        .text(function(d) { return d;})
 
   });
 
