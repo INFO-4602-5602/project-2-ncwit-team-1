@@ -24,8 +24,8 @@ var q1Height = 500 - q1Margin.top - q1Margin.bottom;
 var parseTime = d3.timeParse("%Y");
 
 var q1X = d3.scaleTime().range([0, q1Width]),
-  q1Y = d3.scaleLinear().range([q1Height, 0]),
-  q1Z = d3.scaleOrdinal(d3.schemeCategory10);
+    q1Y = d3.scaleLinear().range([q1Height, 0]),
+    q1Z = d3.scaleOrdinal(d3.schemeCategory10);
 
 var q1color = d3.scaleOrdinal(d3.schemeCategory10);
 
@@ -33,7 +33,7 @@ var q1color = d3.scaleOrdinal(d3.schemeCategory10);
 var q1xAxis = d3.axisBottom()
   .scale(q1X);
 var q1yAxis = d3.axisLeft()
-  .scale(q1Y).ticks(null, "s");
+  .scale(q1Y);
 
 var line = d3.line()
   .curve(d3.curveMonotoneX)
@@ -119,11 +119,12 @@ function updateLineChart(q1_keys) {
           return d.ratio;
         });
       }) + q1Y_padding
-    ]).nice();
+    ]);
 
     q1Z.domain(scategories.map(function(c) {
       return c.id;
     }));
+
     q1_svg.selectAll('.q1axis_x').call(q1xAxis);
     q1_svg.selectAll('.q1axis_y').call(q1yAxis);
 /*
@@ -305,173 +306,20 @@ function renderLineChart(q1_key) {
     });
 
     //console.log(categories);
-
-    q1X.domain(d3.extent(data, function(d) {
-      return d.sy;
-    }));
-
-    var q1Y_padding = 0.04;
-
-    q1Y.domain([
-      d3.min(categories, function(c) {
-        return d3.min(c.values, function(d) {
-          return d.ratio;
-        });
-      }) - q1Y_padding,
-      d3.max(categories, function(c) {
-        return d3.max(c.values, function(d) {
-          return d.ratio;
-        });
-      }) + q1Y_padding
-    ]);
-
     q1Z.domain(categories.map(function(c) {
       return c.id;
     }));
 
     q1_svg.append("g")
-      .attr("class", "axis axis-x")
-      .attr("transform", "translate(0," + q1Height + ")")
-      .call(d3.axisBottom(q1X));
+      .attr("class", "q1axis_x")
+      .attr("transform", "translate(0," + q1Height + ")");
 
     q1_svg.append("g")
-      .attr("class", "axis")
-      .call(d3.axisLeft(q1Y))
-      .append("text")
-      .attr("x", 2)
-      .attr("y", q1Y(q1Y.ticks().pop()) + 0.5)
-      .attr("dy", "0.32em")
-      .attr("fill", "#000")
-      .attr("font-weight", "bold")
-      .attr("text-anchor", "start")
-      .text("Female/Male Ratio");
+      .attr("class", "q1axis_y");
 
     return;
 
-    var category = q1_svg.selectAll(".category")
-      .data(categories)
-      .enter().append("g")
-      .attr("class", "category");
-
-    category.append("path")
-      .attr("class", "line")
-      .attr("d", function(d) {
-        return line(d.values);
-      })
-      .style("stroke", function(d) {
-        return q1Z(d.id);
-      });
-
-    category
-      .style("fill", "#FFF")
-      .style("stroke", function(d) {
-        return q1Z(d.id);
-      })
-      .selectAll(".dot")
-      .data(function(d) {
-        return d.values
-      })
-      .enter()
-      .append("circle")
-      .attr("r", 4)
-      .attr("cx", function(d) {
-        return q1X(d.year);
-      })
-      .attr("cy", function(d) {
-        return q1Y(d.ratio);
-      });
-
-    //empty points
-    var points = q1_svg.selectAll('.points')
-      .data(categories)
-      .enter()
-      .append('g')
-      .attr('class', 'points')
-      .append('text');
-
-    var legend = q1_svg.selectAll(".legend")
-      .data(q1colNames.slice())
-      .enter().append("g")
-      .attr("class", "legend")
-      .attr("transform", function(d, i) {
-        return "translate(0," + i * 20 + ")";
-      });
-
-    legend.append("line")
-      .attr("x1", q1Width - 40)
-      .attr("x2", q1Width)
-      .attr("y1", 10)
-      .attr("y2", 10)
-      .style("stroke", q1color)
-      .attr("class", "line");
-
-    legend.append("text")
-      .attr("x", q1Width - 45)
-      .attr("y", 9)
-      .attr("dy", ".35em")
-      .style("text-anchor", "end")
-      .text(function(d) {
-        return d;
-      })
-
-    var focus = q1_svg.append('g')
-      .attr('class', 'focus')
-      .style('display', 'none');
-
-    focus.append('line')
-      .attr('class', 'x-hover-line hover-line')
-      .attr('y1', 0)
-      .attr('y2', q1Height);
-
-    q1_svg.append('rect')
-      .attr("transform", "translate(" + q1Margin.left + "," + q1Margin.top + ")")
-      .attr("class", "overlay")
-      .attr("width", q1Width)
-      .attr("height", q1Height)
-      .on("mouseover", mouseover)
-      .on("mouseout", mouseout)
-      .on("mousemove", mousemove);
-
-    //Reference: https://codepen.io/anon/pen/GxjERK
-    //on how to add Tooptips to lines
-    var timeScales = data.map(function(id) {
-      return q1X(id.sy);
-    });
-
-    function mouseover() {
-      focus.style("display", null);
-      d3.selectAll('.points text').style("display", null);
-    }
-
-    function mouseout() {
-      focus.style("display", "none");
-      d3.selectAll('.points text').style("display", "none");
-    }
-
-    function mousemove() {
-      var i = d3.bisect(timeScales, d3.mouse(this)[0], 1);
-      var di = data[i - 1];
-      focus.attr("transform", "translate(" + q1X(di.sy) + ",0)");
-      d3.selectAll('.points text')
-        .attr('x', function(d) {
-          return q1X(di.sy) + 15;
-        })
-        .attr('y', function(d) {
-          return q1Y(d.values[i - 1].ratio);
-        })
-        .text(function(d) {
-          return d.values[i - 1].ratio.toFixed(3);
-        })
-        .style('fill', function(d) {
-          return q1Z(d.id);
-        })
-        .style("font-weight", "bold")
-        .style("font-size", "0.8em")
-        .style("font-family", "sans-serif");
-    }
-
   });
-
 };
 
 function type(d, _, columns) {
