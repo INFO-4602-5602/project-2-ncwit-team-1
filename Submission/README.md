@@ -65,7 +65,7 @@ This project explores the National Center for Women in Technology(NCWIT) dataset
 <br></br>
 
 **Our team roles:**
-<br><Keke Wu: Viz3 | Styling</br>
+<br>Keke Wu: Viz3 | Styling</br>
 <br>Wei Miao: Viz2 | Framework</br>
 <br>Xu Han: Viz4 | Data Processing  </br>
 <br>Yawen Zhang: Viz1 | Data Processing  </br>
