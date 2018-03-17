@@ -72,6 +72,8 @@ This project explores the National Center for Women in Technology(NCWIT) dataset
 <br>Jiawei Liu: Viz Prototype</br>
 
 
+<br></br>
+
 **How to run our project:**
 <br>We used python for data processing and d3 for data visualiazation.</br>
 <br>1) open terminal</br>
