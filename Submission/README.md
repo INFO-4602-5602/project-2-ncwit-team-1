@@ -23,10 +23,13 @@ This project explores the National Center for Women in Technology(NCWIT) dataset
 
 **Brief description of Visualization 3:**
 <br></br>
-* What does it show:
-* Interactions part:
+* What does it show: The Enrollment Count with Major Declaration Time of Female and Male
+* Interactions part:  Checkbox showing Male and Female charts;
+                      Mouseover getting tooltips of amount and percentage;
+                      Legend filtering data
 * Conclusions:
-<br></br>
+<br>Enrollment trend is almost the same between male and female students.</br>
+<br>Enrollment count decreases as time goes by.</br>
 
 **Brief description of Visualization 4:**
 <br></br>
@@ -39,9 +42,17 @@ This project explores the National Center for Women in Technology(NCWIT) dataset
 <br></br>
 
 **Our team roles:**
-<br></br>
+<br>Keke Wu: Viz3 | Styling</br>
+<br>Wei Miao: Viz2 | Framework</br>
+<br>Xu Han: Viz4 | Data Processing  </br>
+<br>Yawen Zhang: Viz1 | Data Processing  </br>
+<br>Jiawei Liu: Viz Prototype</br>
+
 
 **How to run our project:**
-<br></br>
+<br>We used python for data processing and d3 for data visualiazation.</br>
+<br>1) open terminal</br>
+<br>2) navigate to the project folder</br>
+<br>3) python -m SimpleHTTPServer</br>
 
 **References:**
