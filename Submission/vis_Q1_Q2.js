@@ -2,13 +2,13 @@
 
 //global variables
 ///////// HEAD
-var colNames = ['Female Enrollment', 'Male Enrollment', 'Female Graduated', 'Male Graduated', 'Female Quit', 'Male Quit'];
+var colNames_Q2 = ['Female Enrollment', 'Male Enrollment', 'Female Graduated', 'Male Graduated', 'Female Quit', 'Male Quit'];
 var keys = ['tfe', 'tme', 'tfg', 'tmg', 'tfl', 'tml'];
-var years = ['2003-2004', '2004-2005', '2005-2006', '2006-2007', '2007-2008', '2008-2009', '2009-2010', '2010-2011', '2011-2012', '2012-2013', '2013-2014', '2014-2015', '2015-2016']
+
 //=======
-/*
+
 var colNames = ['Female Enrollment', 'Male Enrollment', 'Female Graduated', 'Male Graduated', 'Female Quit', 'Male Quit', 'Female/Male Enrollment', 'Female/Male Graduated', 'Female/Male Quit'];
-*/
+
 /////// 1786aaaa1a38d2324160a8c5ca96835332c8f0d7
 
 
@@ -189,19 +189,24 @@ var q2_svg = d3.select('#chart_2').append("svg")
 
 d3.select('#q2_Form').selectAll('.q2_boxes').on('change', function() {
   var checked_data = [];
+  var checked_legned = [];
   var xs = d3.select('#q2_Form').selectAll('.q2_boxes').each(function() {
     cb = d3.select(this);
     if (cb.property("checked")) {
       checked_data.push(cb.property("value"));
+      var checked_value = cb.property("value");
+      var index = keys.indexOf(checked_value);
+      checked_legned.push(colNames_Q2[index]);
     }
   });
-  updateBarChart(checked_data);
+  updateBarChart(checked_data, checked_legned);
 });
 renderBarChart();
 var init_keys = keys.slice(0, 2);
-updateBarChart(init_keys);
+var init_legends = colNames_Q2.slice(0, 2);
+updateBarChart(init_keys, init_legends);
 
-
+//render barchart - create the xy axies only
 function renderBarChart() {
   d3.csv("data/vis_1_Graduate_Dropout_rate_Year.csv", function(d, i, columns) {
     for (var i = 1, n = columns.length; i < n; ++i) d[columns[i]] = +d[columns[i]];
@@ -239,10 +244,12 @@ function renderBarChart() {
       .text("Count");
   });
 
+
+
 }
 
-//renderBarChart function
-function updateBarChart(keys) {
+//updateBarChart function
+function updateBarChart(keys, legends) {
   d3.csv("data/vis_1_Graduate_Dropout_rate_Year.csv", function(d, i, columns) {
     for (var i = 1, n = columns.length; i < n; ++i) d[columns[i]] = +d[columns[i]];
     return d;
@@ -259,9 +266,14 @@ function updateBarChart(keys) {
       });
     })]).nice();
 
+    //update the y axis range
     q2_svg.selectAll('.q2axis_x').call(q2xAxis);
     q2_svg.selectAll('.q2axis_y').call(q2yAxis);
 
+    //set all bar height to 0
+    q2_svg.selectAll("rect").attr("height", 0);
+
+    //update each bar based on the selection
     q2_svg.append("g")
       .selectAll("g")
       .data(data)
@@ -295,29 +307,76 @@ function updateBarChart(keys) {
 
     q2_svg.exit().transition().attr("height", 0).remove();
 
-    var legend = q2_svg.append("g")
-      .attr("font-family", "sans-serif")
-      .attr("font-size", 10)
-      .attr("text-anchor", "end")
-      .selectAll("g")
-      .data(colNames.slice())
-      .enter().append("g")
+
+    var legend = svg.selectAll(".q2legend")
+      .data(legends.slice(0, 2));
+
+    legend.enter().append("g");
+    legend
+      .attr("class", "q2legend")
       .attr("transform", function(d, i) {
-        return "translate(0," + i * 20 + ")";
+        return "translate(0," + (200 + i * 20) + ")";
       });
 
-    legend.append("rect")
-      .attr("x", q2Width - 19)
-      .attr("width", 19)
-      .attr("height", 19)
-      .attr("fill", color);
+    var legendColor = legend.selectAll('.q2legend-color').data(function(d) {
+      return [d];
+    });
+    legendColor.enter().append("rect");
+    legendColor
+      .attr('class', 'q2legend-color')
+      .attr("x", width - 18)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", color);
 
-    legend.append("text")
-      .attr("x", q2Width - 24)
-      .attr("y", 9.5)
-      .attr("dy", "0.32em")
+    var legendText = legend.selectAll('.legend-text').data(function(d) {
+      return [d];
+    });;
+
+    legendText.enter().append("text");
+    legendText
+      .attr('class', 'legend-text')
+      .attr("x", width - 24)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
       .text(function(d) {
         return d;
       });
+
+    legend.exit().remove();
+
+
+
+
+    /*
+        var q2_legend = q2_svg.append("g")
+          .attr("class", "q2lgd")
+          .attr("font-family", "sans-serif")
+          .attr("font-size", 10)
+          .attr("text-anchor", "end")
+          .selectAll("g")
+          .data(legends.slice(0, 2))
+          .enter().append("g")
+          .attr("transform", function(d, i) {
+            return "translate(-500," + i * 20 + ")";
+          });
+
+        q2_legend.append("rect")
+          .attr("x", q2Width - 19)
+          .attr("width", 19)
+          .attr("height", 19)
+          .attr("fill", color);
+
+        q2_legend.append("text")
+          .attr("x", q2Width - 24)
+          .attr("y", 9.5)
+          .attr("dy", "0.32em")
+          .text(function(d) {
+            return d;
+          });
+
+        q2_legend.exit().remove();
+        */
   });
 }
