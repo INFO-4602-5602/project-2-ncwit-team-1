@@ -61,11 +61,9 @@ var q1_dict={
 d3.select('#q1_Form').selectAll('.q1_boxes').on('change', function() {
   var checked_data_ids=[];
   var xs = d3.select('#q1_Form').selectAll('.q1_boxes').each(function() {
-    cb=d3.select(this);
+    cb = d3.select(this);
     if(cb.property("checked")){
     //  checked_data.push()
-      console.log(cb.property("value"));
-      console.log(q1_dict[cb.property("value")]);
       checked_data_ids.push(q1_dict[cb.property("value")]);
     }
   });
@@ -94,17 +92,15 @@ function updateLineChart(q1_keys){
         })
       };
     });
+
     var scategories = new Array();
     var sQ1LegendNames = new Array();
-    var sColor = new Array();
-    for(var i=0; i<q1_keys.length;i++){
-      //console.log(q1_keys[i]);
-      //console.log(categories[q1_keys[i]-13]);
-      scategories[i] = categories[q1_keys[i]-13];
-      sQ1LegendNames[i] = q1colNames[q1_keys[i]-13];
-      sColor[i] = q1Z(q1_keys[i]);
+    var sId = new Array();
+    for(var i = 0; i < q1_keys.length; i++){
+      scategories[i] = categories[q1_keys[i] - 13];
+      sQ1LegendNames[i] = q1colNames[q1_keys[i] - 13];
+      sId[i] = scategories[i].id;
     }
-    //console.log(scategories);
 
   q1X.domain(d3.extent(data, function(d) {
     return d.sy;
@@ -133,7 +129,7 @@ function updateLineChart(q1_keys){
   q1_svg.selectAll('.q1axis_y').call(q1yAxis);
 
   //q1_svg.selectAll(".line").attr("height", 0);
-  q1Z.domain(scategories.map(function(c) {
+  q1Z.domain(categories.map(function(c) {
     return c.id;
   }));
 
@@ -148,6 +144,7 @@ function updateLineChart(q1_keys){
       return line(d.values);
     })
     .style("stroke", function(d) {
+      console.log(q1Z(d.id));
       return q1Z(d.id);
     });
 
@@ -187,7 +184,7 @@ function updateLineChart(q1_keys){
       .attr("x2", q1Width)
       .attr("y1", 10)
       .attr("y2", 10)
-      .style("stroke", q1color)
+      .style("stroke", function(d, i) { return q1Z(sId[i]);})
       .attr("class", "line");
 
   legend.append("text")
