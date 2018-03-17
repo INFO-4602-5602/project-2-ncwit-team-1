@@ -14,13 +14,18 @@ This project explores the National Center for Women in Technology(NCWIT) dataset
      * Checkbox showing ratio in Enrollment and/or Graduated and/or Dropout count; 
      * Mouseover showing hoverline over different years with Ratio values
 * Conclusions: 
-<br>The ratio of female/male in Enrollment and Graduated are higher than Dropout, indicating less female per male dropout during school years. </br>
+     * The ratio of female/male in Enrollment and Graduated are higher than Dropout, indicating less female per male dropout during school years. 
+     * The enrollment ratio gradually incresed indicates that more and more female enrolled in CS-related major.
+
 
 **Brief description of Visualization 2:**
 <br></br>
-* What does it show:
+* What does it show: The Actual Count in Enrollment, Graduated and Dropout of Female and Male with Years
 * Interactions part:
-* Conclusions:
+     * Mouseover to get detailed data information.
+     * Click on legends to filter data.
+* Conclusions: The number of male is much more than female in all enrollment, graduated and dropout aspects.
+
 <br></br>
 
 **Brief description of Visualization 3:**
