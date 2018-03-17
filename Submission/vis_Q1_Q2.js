@@ -214,8 +214,11 @@ function renderLineChart() {
       d3.selectAll('.points text')
         .attr('x', function(d) { return q1X(di.sy) + 15; })
         .attr('y', function(d) { return q1Y(d.values[i-1].ratio); })
-        .text(function(d) { return d.values[i-1].ratio; })
-        .style('fill', function(d) { return q1Z(d.id); });
+        .text(function(d) { return d.values[i-1].ratio.toFixed(3); })
+        .style('fill', function(d) { return q1Z(d.id); })
+        .style("font-weight", "bold")
+        .style("font-size", "0.8em")
+        .style("font-family", "sans-serif");
     }
 
   });
