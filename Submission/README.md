@@ -25,8 +25,8 @@ This project explores the National Center for Women in Technology(NCWIT) dataset
 <br></br>
 * What does it show: The Enrollment Count with Major Declaration Time of Female and Male
 * Interactions part:  Checkbox showing Male and Female charts;
-                                Mouseover getting tooltips of amount and percentage;
-                                Legend filtering data
+                      Mouseover getting tooltips of amount and percentage;
+                      Legend filtering data
 * Conclusions:
 <br>Enrollment trend is almost the same between male and female students.</br>
 <br>Enrollment count decreases as time goes by.</br>
