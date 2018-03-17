@@ -78,7 +78,10 @@ renderLineChart(-1);
 function updateLineChart(q1_keys){
   d3.csv("data/vis_1_Graduate_Dropout_rate_Year.csv", type, function(error, data) {
     if (error) throw error;
-    if (q1_keys.length==0) return;
+    if (q1_keys.length == 0){
+      q1_svg.selectAll(".category").remove();
+      q1_svg.selectAll(".legend").remove();
+    }
     //select ratios: 'fmg', 'fml', 'fme'
     var categories = data.columns.slice(13, 16).map(function(id) {
       return {
@@ -121,11 +124,11 @@ function updateLineChart(q1_keys){
       });
     }) + q1Y_padding
   ]).nice();
-  console.log("update");
+
   //q1_svg.selectAll(".line").remove();
   q1_svg.selectAll(".category").remove();
   q1_svg.selectAll(".legend").remove();
-
+  q1_svg.selectAll(".points").remove();
   q1_svg.selectAll('.q1axis_x').call(q1xAxis);
   q1_svg.selectAll('.q1axis_y').call(q1yAxis);
 
@@ -167,7 +170,7 @@ function updateLineChart(q1_keys){
 
   //empty points
   var points = q1_svg.selectAll('.points')
-      .data(categories)
+      .data(scategories)
       .enter()
       .append('g')
       .attr('class', 'points')
@@ -262,7 +265,6 @@ function renderLineChart(q1_key) {
       };
     });
 
-
     //console.log(categories);
 
     q1X.domain(d3.extent(data, function(d) {
@@ -304,7 +306,9 @@ function renderLineChart(q1_key) {
       .attr("font-weight", "bold")
       .attr("text-anchor", "start")
       .text("Female/Male Ratio");
+
     return;
+
     var category = q1_svg.selectAll(".category")
       .data(categories)
       .enter().append("g")
