@@ -1,0 +1,462 @@
+{
+ "name": "Race distribution",
+ "children": [
+  {
+   "name": "Female", "per": 14.17,
+   "children": [
+    {
+     "name": "03", "per": 1.13,
+     "children": [
+      {
+        "name": "Race", "per": 1.13,
+        "children": [
+        {"name": "Asian", "size": 363, "per": 58.92857142857143},
+        {"name": "Black American", "size": 34, "per": 5.51948051948052},
+        {"name": "Hispanics", "size":34, "per": 5.51948051948052},
+        {"name": "American Indian/Alaska Native", "size":2, "per": 0.3246753246753247},
+        {"name": "Pacific Islander", "size":0, "per": 0.0},
+        {"name": "White", "size":183, "per": 29.707792207792206}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "04", "per": 1.68,
+     "children": [
+      {
+        "name": "Race","per": 1.68,
+        "children": [
+        {"name": "Asian", "size": 356, "per": 38.949671772428886},
+        {"name": "Black American", "size": 156, "per": 17.067833698030636},
+        {"name": "Hispanics", "size":44, "per": 4.814004376367615},
+        {"name": "American Indian/Alaska Native", "size": 4, "per": 0.437636761487965},
+        {"name": "Pacific Islander", "size": 11, "per": 1.2035010940919038},
+        {"name": "White", "size": 343, "per": 37.527352297593}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "05", "per": 1.48,
+     "children": [
+      {
+        "name": "Race", "per": 1.48,
+        "children": [
+        {"name": "Asian", "size": 248, "per": 30.80745341614907},
+        {"name": "Black American", "size": 116, "per": 14.409937888198758},
+        {"name": "Hispanics", "size": 43, "per": 5.341614906832298},
+        {"name": "American Indian/Alaska Native", "size": 8, "per": 0.9937888198757764},
+        {"name": "Pacific Islander", "size":0, "per":  0.0},
+        {"name": "White", "size": 390, "per": 48.4472049689441}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "06", "per": 1.97,
+     "children": [
+      {
+        "name": "Race", "per": 1.97,
+        "children": [
+        {"name": "Asian", "size": 220, "per": 20.52238805970149},
+        {"name": "Black American", "size": 84, "per": 7.8358208955223882},
+        {"name": "Hispanics", "size": 100, "per": 9.328358208955224},
+        {"name": "American Indian/Alaska Native", "size": 6, "per": 0.5597014925373134},
+        {"name": "Pacific Islander", "size": 0, "per": 0.0},
+        {"name": "White", "size": 662, "per": 61.75373134328358}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "07", "per": 2.21,
+     "children": [
+      {
+        "name": "Race", "per": 2.21,
+        "children": [
+        {"name": "Asian", "size": 226, "per": 18.78636741479634},
+        {"name": "Black American", "size": 86, "per": 7.14879467996675},
+        {"name": "Hispanics", "size":122 , "per": 10.141313383208646},
+        {"name": "American Indian/Alaska Native", "size": 17, "per": 1.4131338320864506},
+        {"name": "Pacific Islander", "size":0, "per":  0.0},
+        {"name": "White", "size": 752, "per": 62.510390689941815}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "08", "per": 4.03,
+     "children": [
+      {
+        "name": "Race", "per": 4.03,
+        "children": [
+        {"name": "Asian", "size": 466, "per": 21.23006833712984},
+        {"name": "Black American", "size": 173, "per": 7.881548974943052},
+        {"name": "Hispanics", "size": 163, "per": 7.425968109339408},
+        {"name": "American Indian/Alaska Native", "size": 21, "per": 0.9567198177676538},
+        {"name": "Pacific Islander", "size": 5, "per": 0.22779043280182232},
+        {"name": "White", "size": 1367, "per": 62.277904328018224}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "09", "per": 6.45,
+     "children": [
+      {
+        "name": "Race", "per": 6.45,
+        "children": [
+        {"name": "Asian", "size": 705, "per": 20.039795338260376},
+        {"name": "Black American", "size": 262, "per": 7.447413303013076},
+        {"name": "Hispanics", "size": 643, "per": 18.277430358158043},
+        {"name": "American Indian/Alaska Native", "size": 27, "per": 0.7674815235929505},
+        {"name": "Pacific Islander", "size":15 , "per": 0.42637862421830586},
+        {"name": "White", "size": 1866, "per": 53.041500852757245}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "10", "per": 9.24,
+     "children": [
+      {
+        "name": "Race", "per": 9.24,
+        "children": [
+        {"name": "Asian", "size": 1029, "per": 20.432883240667195},
+        {"name": "Black American", "size": 438, "per": 8.69737887212073},
+        {"name": "Hispanics", "size":792 , "per": 15.726767275615568},
+        {"name": "American Indian/Alaska Native", "size": 20, "per": 0.3971405877680699},
+        {"name": "Pacific Islander", "size": 26, "per": 0.5162827640984908},
+        {"name": "White", "size": 2731, "per": 54.22954725972995}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "11", "per": 10.82,
+     "children": [
+      {
+        "name": "Race", "per": 10.82,
+        "children": [
+        {"name": "Asian", "size": 1321, "per": 22.397422855205154},
+        {"name": "Black American", "size": 591, "per": 10.020345879959308},
+        {"name": "Hispanics", "size": 917, "per": 15.547643268904713},
+        {"name": "American Indian/Alaska Native", "size": 28, "per": 0.4747371990505256},
+        {"name": "Pacific Islander", "size": 30, "per": 0.508646998982706},
+        {"name": "White", "size":3011, "per":  51.05120379789759}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "12", "per": 11.52,
+     "children": [
+      {
+        "name": "Race", "per": 11.52,
+        "children": [
+        {"name": "Asian", "size": 1614, "per": 25.696545136124822},
+        {"name": "Black American", "size": 587, "per": 9.34564559783474},
+        {"name": "Hispanics", "size": 746, "per": 11.877089635408375},
+        {"name": "American Indian/Alaska Native", "size": 33, "per": 0.5253940455341506},
+        {"name": "Pacific Islander", "size": 19, "per": 0.30249960197420794},
+        {"name": "White", "size": 3282, "per": 52.25282598312371}
+        ]
+      }
+     ]
+    },{
+     "name": "13", "per": 13.91,
+     "children": [
+      {
+        "name": "Race", "per": 13.91,
+        "children": [
+        {"name": "Asian", "size":2069, "per": 27.28471581168403},
+        {"name": "Black American", "size": 589, "per": 7.767374390083081},
+        {"name": "Hispanics", "size":1057 , "per": 13.939074245021759},
+        {"name": "American Indian/Alaska Native", "size": 31, "per": 0.4088091784254253},
+        {"name": "Pacific Islander", "size": 25, "per": 0.3296848213108268},
+        {"name": "White", "size": 3812, "per": 50.27034155347488}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "2014", "per": 16.25,
+     "children": [
+      {
+        "name": "Race", "per": 16.25,
+        "children": [
+        {"name": "Asian", "size": 2640, "per": 29.793477034194787},
+        {"name": "Black American", "size": 683, "per": 7.7079336418011515},
+        {"name": "Hispanics", "size": 1158, "per": 13.068502426362713},
+        {"name": "American Indian/Alaska Native", "size": 41, "per": 0.46270172666741904},
+        {"name": "Pacific Islander", "size": 24, "per": 0.2708497912199526},
+        {"name": "White", "size": 4315, "per": 48.696535379753975}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "2015", "per": 14.83,
+     "children": [
+      {
+        "name": "Race", "per": 14.83,
+        "children": [
+        {"name": "Asian", "size": 2418, "per": 29.91463565507856},
+        {"name": "Black American", "size": 641, "per": 7.930223926759866},
+        {"name": "Hispanics", "size": 1056, "per": 13.064456266237784},
+        {"name": "American Indian/Alaska Native", "size": 34, "per": 0.4206359025114438},
+        {"name": "Pacific Islander", "size": 24, "per": 0.29691946059631324},
+        {"name": "White", "size": 3910, "per": 48.37312878881603}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "2016", "per": 4.50,
+     "children": [
+      {
+        "name": "Race", "per": 4.50,
+        "children": [
+        {"name": "Asian", "size":942 , "per": 38.355048859934854},
+        {"name": "Black American", "size": 133, "per": 5.415309446254072},
+        {"name": "Hispanics", "size": 345, "per": 14.047231270358306},
+        {"name": "American Indian/Alaska Native", "size": 5, "per": 0.20358306188925082},
+        {"name": "Pacific Islander", "size": 4, "per": 0.16286644951140064},
+        {"name": "White", "size": 1027, "per": 41.81596091205212}
+        ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Male", "per": 85.83,
+   "children": [
+    {
+     "name": "03", "per": 1.04,
+     "children": [
+      {
+        "name": "Race", "per": 1.04,
+
+        "children": [
+        {"name": "Asian", "size": 1496, "per": 43.78109452736319},
+        {"name": "Black American", "size": 94, "per": 2.7509511267193445},
+        {"name": "Hispanics", "size": 196, "per": 5.736025753585016},
+        {"name": "American Indian/Alaska Native", "size": 7, "per": 0.2048580626280363},
+        {"name": "Pacific Islander", "size": 5, "per": 0.1463271875914545},
+        {"name": "White", "size": 1619, "per": 47.380743342112964}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "04", "per": 2.07,
+     "children": [
+      {
+        "name": "Race","per": 2.07,
+        "children": [
+        {"name": "Asian", "size": 1662, "per": 24.376650044001174},
+        {"name": "Black American", "size": 404, "per": 5.925491346435905},
+        {"name": "Hispanics", "size": 387, "per": 5.676151364036374},
+        {"name": "American Indian/Alaska Native", "size": 15, "per": 0.2200058668231153},
+        {"name": "Pacific Islander", "size":38, "per":  0.557348195951892},
+        {"name": "White", "size": 4312, "per": 63.24435318275154}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "05", "per": 1.98,
+     "children": [
+      {
+        "name": "Race", "per": 1.98,
+        "children": [
+        {"name": "Asian", "size": 1320, "per": 20.220588235294116},
+        {"name": "Black American", "size": 279, "per": 4.273897058823529},
+        {"name": "Hispanics", "size": 370, "per": 5.667892156862745},
+        {"name": "American Indian/Alaska Native", "size": 23, "per": 0.35232843137254904},
+        {"name": "Pacific Islander", "size": 8, "per": 0.12254901960784313},
+        {"name": "White", "size": 4528, "per": 69.36274509803921}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "06", "per": 2.63,
+     "children": [
+      {
+        "name": "Race", "per": 2.63,
+        "children": [
+        {"name": "Asian", "size": 1151, "per": 13.246633674761192},
+        {"name": "Black American", "size": 243, "per": 2.79663942916331},
+        {"name": "Hispanics", "size": 640, "per": 7.365634710553573},
+        {"name": "American Indian/Alaska Native", "size": 39, "per": 0.4488433651743584},
+        {"name": "Pacific Islander", "size": 7, "per": 0.0805616296466797},
+        {"name": "White", "size": 6609, "per": 76.06168719070088}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "07", "per": 2.93,
+     "children": [
+      {
+        "name": "Race", "per": 2.93,
+        "children": [
+        {"name": "Asian", "size":1131 , "per": 11.691130866239405},
+        {"name": "Black American", "size": 357, "per": 3.6903039073806077},
+        {"name": "Hispanics", "size": 786, "per": 8.124870787678313},
+        {"name": "American Indian/Alaska Native", "size": 49, "per": 0.5065123010130246},
+        {"name": "Pacific Islander", "size": 5, "per": 0.05168492867479843},
+        {"name": "White", "size": 7346, "per": 75.93549720901385}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "08", "per": 4.78,
+     "children": [
+      {
+        "name": "Race","per": 4.78,
+        "children": [
+        {"name": "Asian", "size": 2487, "per": 15.751472544176325},
+        {"name": "Black American", "size": 746, "per": 4.724808410918994},
+        {"name": "Hispanics", "size": 1137, "per": 7.201216036481094},
+        {"name": "American Indian/Alaska Native", "size": 93, "per": 0.5890176705301159},
+        {"name": "Pacific Islander", "size": 21, "per": 0.1330039901197036},
+        {"name": "White", "size": 11305, "per": 71.60048134777377}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "09", "per": 6.77,
+     "children": [
+      {
+        "name": "Race", "per": 6.77,
+        "children": [
+        {"name": "Asian", "size": 3238, "per": 14.478626363798963},
+        {"name": "Black American", "size": 1019, "per": 4.556429976748346},
+        {"name": "Hispanics", "size": 3353, "per": 14.992845644786264},
+        {"name": "American Indian/Alaska Native", "size": 119, "per": 0.532105169021642},
+        {"name": "Pacific Islander", "size": 61, "per": 0.2727597925236988},
+        {"name": "White", "size": 14574, "per": 65.16723305312108}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "10", "per": 9.71,
+     "children": [
+      {
+        "name": "Race", "per": 9.71,
+        "children": [
+        {"name": "Asian", "size": 4906, "per": 15.303035029164977},
+        {"name": "Black American", "size": 1538, "per": 4.79740478492779},
+        {"name": "Hispanics", "size": 4314, "per": 13.456439689322812},
+        {"name": "American Indian/Alaska Native", "size": 144, "per": 0.4491718394210674},
+        {"name": "Pacific Islander", "size": 105, "per": 0.327521132911195},
+        {"name": "White", "size": 21052, "per": 65.66642752425216}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "11", "per": 11.51,
+     "children": [
+      {
+        "name": "Race", "per": 11.51,
+        "children": [
+        {"name": "Asian", "size": 6260, "per": 16.476719395678153},
+        {"name": "Black American", "size": 1872, "per": 4.927223435896086},
+        {"name": "Hispanics", "size": 5303, "per": 13.957834337904352},
+        {"name": "American Indian/Alaska Native", "size":155, "per":  0.40796988919011395},
+        {"name": "Pacific Islander", "size":90, "per":  0.23688574211038876},
+        {"name": "White", "size": 24313, "per": 63.993367199220906}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "12", "per": 11.99,
+     "children": [
+      {
+        "name": "Race", "per": 11.99,
+        "children": [
+        {"name": "Asian", "size":7375, "per":  18.630323851866823},
+        {"name": "Black American", "size": 2112, "per": 5.335219522053251},
+        {"name": "Hispanics", "size": 4606, "per": 11.635426665993029},
+        {"name": "American Indian/Alaska Native", "size": 146, "per": 0.36881725862678727},
+        {"name": "Pacific Islander", "size": 101, "per": 0.2551407063103117},
+        {"name": "White", "size": 25246, "per": 63.7750719951498}
+        ]
+      }
+     ]
+    },{
+     "name": "13", "per": 14.10,
+     "children": [
+      {
+        "name": "Race", "per": 14.10,
+        "children": [
+        {"name": "Asian", "size": 9076, "per": 19.498152444788175},
+        {"name": "Black American", "size": 2076, "per": 4.459912348543439},
+        {"name": "Hispanics", "size": 6002, "per": 12.894216722522987},
+        {"name": "American Indian/Alaska Native", "size": 182, "per": 0.39099424250236314},
+        {"name": "Pacific Islander", "size": 130, "per": 0.27928160178740224},
+        {"name": "White", "size": 29082, "per": 62.47744263985563}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "2014", "per": 14.83,
+     "children": [
+      {
+        "name": "Race", "per": 14.83,
+        "children": [
+        {"name": "Asian", "size": 10286, "per": 21.0124203301193},
+        {"name": "Black American", "size": 2300, "per": 4.698480143814349},
+        {"name": "Hispanics", "size": 6456, "per": 13.188429481941494},
+        {"name": "American Indian/Alaska Native", "size":209, "per":  0.42694884785095605},
+        {"name": "Pacific Islander", "size":125, "per":  0.2553521817290407},
+        {"name": "White", "size": 29576, "per": 60.41836901454486}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "2015", "per": 12.20,
+     "children": [
+      {
+        "name": "Race", "per": 12.20,
+        "children": [
+        {"name": "Asian", "size": 8454, "per": 20.98599940422997},
+        {"name": "Black American", "size":2001, "per":  4.967232648197796},
+        {"name": "Hispanics", "size":5169, "per":  12.83139708072684},
+        {"name": "American Indian/Alaska Native", "size": 195, "per": 0.48406315162347335},
+        {"name": "Pacific Islander", "size": 102, "per": 0.2532022639261245},
+        {"name": "White", "size": 24363, "per": 60.4781054512958}
+        ]
+      }
+     ]
+    },
+    {
+     "name": "2016", "per": 3.46,
+     "children": [
+      {
+        "name": "Race", "per": 3.46,
+        "children": [
+        {"name": "Asian", "size": 2724, "per": 23.813270390768423},
+        {"name": "Black American", "size": 458, "per": 4.003846490077804},
+        {"name": "Hispanics", "size": 1293, "per": 11.30343561500131},
+        {"name": "American Indian/Alaska Native", "size":20,"per":  0.1748404580820002},
+        {"name": "Pacific Islander", "size":16, "per":  0.13987236646560014},
+        {"name": "White", "size": 6928, "per": 60.56473467960486}
+        ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

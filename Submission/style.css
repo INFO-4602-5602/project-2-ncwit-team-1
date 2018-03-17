@@ -51,12 +51,51 @@ body {
   font-weight: 600;
 }
 
-.axis--x path {
-  display: none;
-}
-
 .line {
   fill: none;
-  stroke: steelblue;
-  stroke-width: 1.5px;
+  stroke-width: 4px;
+}
+
+.hover-line {
+  stroke: grey;
+  stroke-width: 2px;
+  stroke-dasharray: 3,3;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+p {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+a{
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+h1{
+   font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+h2{
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+h3{
+font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+h4{
+ font-size: 16px;
+ font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+h5{
+ font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+h6{
+  font-weight: bold;
+  font-family: "Comic Sans MS", cursive, sans-serif;
 }
