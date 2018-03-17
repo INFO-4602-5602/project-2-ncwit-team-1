@@ -3,19 +3,14 @@
 //global variables
 ///////// HEAD
 var colNames_Q2 = ['Female Enrollment', 'Male Enrollment', 'Female Graduated', 'Male Graduated', 'Female Quit', 'Male Quit'];
-var keys = ['tfe', 'tme', 'tfg', 'tmg', 'tfl', 'tml'];
+var data_keys = ['tfe', 'tme', 'tfg', 'tmg', 'tfl', 'tml'];
 
-//=======
+
 
 var colNames = ['Female Enrollment', 'Male Enrollment', 'Female Graduated', 'Male Graduated', 'Female Quit', 'Male Quit', 'Female/Male Enrollment', 'Female/Male Graduated', 'Female/Male Quit'];
-<<<<<<< HEAD
 
-/////// 1786aaaa1a38d2324160a8c5ca96835332c8f0d7
-
-=======
-*/
 var q1colNames = ['Female/Male Graduated Ratio', 'Female/Male Quit Ratio', 'Female/Male Enrollment Ratio']
->>>>>>> 0a3c3d21b7758f505ca6fe97f4b1c126deaaa353
+
 
 //MarK: d3 visualization
 
@@ -33,19 +28,19 @@ var q1Height = 500 - q1Margin.top - q1Margin.bottom;
 var parseTime = d3.timeParse("%Y");
 
 var q1X = d3.scaleTime().range([0, q1Width]),
-    q1Y = d3.scaleLinear().range([q1Height, 0]),
-    q1Z = d3.scaleOrdinal(d3.schemeCategory10);
+  q1Y = d3.scaleLinear().range([q1Height, 0]),
+  q1Z = d3.scaleOrdinal(d3.schemeCategory10);
 
 var q1color = d3.scaleOrdinal(d3.schemeCategory10);
 
 var line = d3.line()
-    .curve(d3.curveMonotoneX)
-    .x(function(d) {
-      return q1X(d.year);
-    })
-    .y(function(d) {
-      return q1Y(d.ratio);
-    });
+  .curve(d3.curveMonotoneX)
+  .x(function(d) {
+    return q1X(d.year);
+  })
+  .y(function(d) {
+    return q1Y(d.ratio);
+  });
 
 //define svg
 var q1_svg = d3.select('#chart_1').append("svg")
@@ -55,18 +50,18 @@ var q1_svg = d3.select('#chart_1').append("svg")
   .attr("transform", "translate(" + q1Margin.left + "," + q1Margin.top + ")");
 
 //q1 value -> column_id
-var q1_dict={
+var q1_dict = {
   "enrollment": 13,
   "graduated": 14,
   "quit": 15
 }
 
 d3.select('#q1_Form').selectAll('.q1_boxes').on('change', function() {
-  var checked_data_ids=[];
+  var checked_data_ids = [];
   var xs = d3.select('#q1_Form').selectAll('.q1_boxes').each(function() {
-    cb=d3.select(this);
-    if(cb.property("checked")){
-    //  checked_data.push()
+    cb = d3.select(this);
+    if (cb.property("checked")) {
+      //  checked_data.push()
       console.log(cb.property("value"));
       console.log(q1_dict[cb.property("value")]);
       checked_data_ids.push(q1_dict[cb.property("value")]);
@@ -78,10 +73,10 @@ d3.select('#q1_Form').selectAll('.q1_boxes').on('change', function() {
 });
 renderLineChart(-1);
 
-function updateLineChart(q1_keys){
+function updateLineChart(q1_keys) {
   d3.csv("data/vis_1_Graduate_Dropout_rate_Year.csv", type, function(error, data) {
     if (error) throw error;
-    if (q1_keys.length==0) return;
+    if (q1_keys.length == 0) return;
     //select ratios: 'fmg', 'fml', 'fme'
     var categories = data.columns.slice(13, 16).map(function(id) {
       return {
@@ -95,99 +90,103 @@ function updateLineChart(q1_keys){
       };
     });
     var scategories = new Array();
-    for(var i=0; i<q1_keys.length;i++){
+    for (var i = 0; i < q1_keys.length; i++) {
       //console.log(q1_keys[i]);
       //console.log(categories[q1_keys[i]-13]);
-      scategories[i] = categories[q1_keys[i]-13];
+      scategories[i] = categories[q1_keys[i] - 13];
     }
     //console.log(scategories);
 
-  q1X.domain(d3.extent(data, function(d) {
-    return d.sy;
-  }));
+    q1X.domain(d3.extent(data, function(d) {
+      return d.sy;
+    }));
 
-  var q1Y_padding = 0.04;
+    var q1Y_padding = 0.04;
 
-  q1Y.domain([
-    d3.min(scategories, function(c) {
-      return d3.min(c.values, function(d) {
-        return d.ratio;
+    q1Y.domain([
+      d3.min(scategories, function(c) {
+        return d3.min(c.values, function(d) {
+          return d.ratio;
+        });
+      }) - q1Y_padding,
+      d3.max(scategories, function(c) {
+        return d3.max(c.values, function(d) {
+          return d.ratio;
+        });
+      }) + q1Y_padding
+    ]).nice();
+
+    q1Z.domain(scategories.map(function(c) {
+      return c.id;
+    }));
+
+    q1_svg.append("g")
+      .attr("class", "axis axis-x")
+      .attr("transform", "translate(0," + q1Height + ")")
+      .call(d3.axisBottom(q1X));
+
+    q1_svg.append("g")
+      .attr("class", "axis")
+      .call(d3.axisLeft(q1Y))
+      .append("text")
+      .attr("x", 2)
+      .attr("y", q1Y(q1Y.ticks().pop()) + 0.5)
+      .attr("dy", "0.32em")
+      .attr("fill", "#000")
+      .attr("font-weight", "bold")
+      .attr("text-anchor", "start")
+      .text("Female/Male Ratio");
+    q1_svg.selectAll(".category").exit().remove();
+    var category = q1_svg.selectAll(".category")
+      .data(scategories)
+      .enter().append("g")
+      .attr("class", "category");
+
+    category.append("path")
+      .attr("class", "line")
+      .attr("d", function(d) {
+        return line(d.values);
+      })
+      .style("stroke", function(d) {
+        return q1Z(d.id);
       });
-    }) - q1Y_padding,
-    d3.max(scategories, function(c) {
-      return d3.max(c.values, function(d) {
-        return d.ratio;
+
+    category
+      .style("fill", "#FFF")
+      .style("stroke", function(d) {
+        return q1Z(d.id);
+      })
+      .selectAll(".dot")
+      .data(function(d) {
+        return d.values
+      })
+      .enter()
+      .append("circle")
+      .attr("r", 4)
+      .attr("cx", function(d) {
+        return q1X(d.year);
+      })
+      .attr("cy", function(d) {
+        return q1Y(d.ratio);
       });
-    }) + q1Y_padding
-  ]).nice();
 
-  q1Z.domain(scategories.map(function(c) {
-    return c.id;
-  }));
-
-  q1_svg.append("g")
-    .attr("class", "axis axis-x")
-    .attr("transform", "translate(0," + q1Height + ")")
-    .call(d3.axisBottom(q1X));
-
-  q1_svg.append("g")
-    .attr("class", "axis")
-    .call(d3.axisLeft(q1Y))
-    .append("text")
-    .attr("x", 2)
-    .attr("y", q1Y(q1Y.ticks().pop()) + 0.5)
-    .attr("dy", "0.32em")
-    .attr("fill", "#000")
-    .attr("font-weight", "bold")
-    .attr("text-anchor", "start")
-    .text("Female/Male Ratio");
-  q1_svg.selectAll(".category").exit().remove();
-  var category = q1_svg.selectAll(".category")
-    .data(scategories)
-    .enter().append("g")
-    .attr("class", "category");
-
-  category.append("path")
-    .attr("class", "line")
-    .attr("d", function(d) {
-      return line(d.values);
-    })
-    .style("stroke", function(d) {
-      return q1Z(d.id);
-    });
-
-  category
-    .style("fill", "#FFF")
-    .style("stroke", function(d) { return q1Z(d.id); })
-    .selectAll(".dot")
-    .data(function(d){
-      return d.values
-    })
-    .enter()
-    .append("circle")
-    .attr("r", 4)
-    .attr("cx", function(d){
-      return q1X(d.year);
-    })
-    .attr("cy", function(d){
-      return q1Y(d.ratio);
-    });
-
-  //empty points
-  var points = q1_svg.selectAll('.points')
+    //empty points
+    var points = q1_svg.selectAll('.points')
       .data(categories)
       .enter()
       .append('g')
       .attr('class', 'points')
       .append('text');
 
-  var legend = q1_svg.selectAll(".legend")
+    var legend = q1_svg.selectAll(".legend")
       .data(q1colNames.slice())
       .enter().append("g")
       .attr("class", "legend")
-      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+      .attr("transform", function(d, i) {
+        return "translate(0," + i * 20 + ")";
+      });
 
-  legend.append("line")
+    legend.append("line")
       .attr("x1", q1Width - 40)
       .attr("x2", q1Width)
       .attr("y1", 10)
@@ -195,59 +194,71 @@ function updateLineChart(q1_keys){
       .style("stroke", q1color)
       .attr("class", "line");
 
-  legend.append("text")
+    legend.append("text")
       .attr("x", q1Width - 45)
       .attr("y", 9)
       .attr("dy", ".35em")
       .style("text-anchor", "end")
-      .text(function(d) { return d;})
+      .text(function(d) {
+        return d;
+      })
 
-  var focus = q1_svg.append('g')
-    .attr('class', 'focus')
-    .style('display', 'none');
+    var focus = q1_svg.append('g')
+      .attr('class', 'focus')
+      .style('display', 'none');
 
-  focus.append('line')
-    .attr('class', 'x-hover-line hover-line')
-    .attr('y1' , 0)
-    .attr('y2', q1Height);
+    focus.append('line')
+      .attr('class', 'x-hover-line hover-line')
+      .attr('y1', 0)
+      .attr('y2', q1Height);
 
-  q1_svg.append('rect')
-    .attr("transform", "translate(" + q1Margin.left + "," + q1Margin.top + ")")
-    .attr("class", "overlay")
-    .attr("width", q1Width)
-    .attr("height", q1Height)
-    .on("mouseover", mouseover)
-    .on("mouseout", mouseout)
-    .on("mousemove", mousemove);
+    q1_svg.append('rect')
+      .attr("transform", "translate(" + q1Margin.left + "," + q1Margin.top + ")")
+      .attr("class", "overlay")
+      .attr("width", q1Width)
+      .attr("height", q1Height)
+      .on("mouseover", mouseover)
+      .on("mouseout", mouseout)
+      .on("mousemove", mousemove);
 
-  //Reference: https://codepen.io/anon/pen/GxjERK
-  //on how to add Tooptips to lines
-  var timeScales = data.map(function(id) { return q1X(id.sy); });
+    //Reference: https://codepen.io/anon/pen/GxjERK
+    //on how to add Tooptips to lines
+    var timeScales = data.map(function(id) {
+      return q1X(id.sy);
+    });
 
-  function mouseover() {
-    focus.style("display", null);
-    d3.selectAll('.points text').style("display", null);
-  }
+    function mouseover() {
+      focus.style("display", null);
+      d3.selectAll('.points text').style("display", null);
+    }
 
-  function mouseout() {
-    focus.style("display", "none");
-    d3.selectAll('.points text').style("display", "none");
-  }
+    function mouseout() {
+      focus.style("display", "none");
+      d3.selectAll('.points text').style("display", "none");
+    }
 
-  function mousemove() {
-    var i = d3.bisect(timeScales, d3.mouse(this)[0], 1);
-    var di = data[i-1];
-    focus.attr("transform", "translate(" + q1X(di.sy) + ",0)");
-    d3.selectAll('.points text')
-      .attr('x', function(d) { return q1X(di.sy) + 15; })
-      .attr('y', function(d) { return q1Y(d.values[i-1].ratio); })
-      .text(function(d) { return d.values[i-1].ratio.toFixed(3); })
-      .style('fill', function(d) { return q1Z(d.id); })
-      .style("font-weight", "bold")
-      .style("font-size", "0.8em")
-      .style("font-family", "sans-serif");
-  }
-});
+    function mousemove() {
+      var i = d3.bisect(timeScales, d3.mouse(this)[0], 1);
+      var di = data[i - 1];
+      focus.attr("transform", "translate(" + q1X(di.sy) + ",0)");
+      d3.selectAll('.points text')
+        .attr('x', function(d) {
+          return q1X(di.sy) + 15;
+        })
+        .attr('y', function(d) {
+          return q1Y(d.values[i - 1].ratio);
+        })
+        .text(function(d) {
+          return d.values[i - 1].ratio.toFixed(3);
+        })
+        .style('fill', function(d) {
+          return q1Z(d.id);
+        })
+        .style("font-weight", "bold")
+        .style("font-size", "0.8em")
+        .style("font-family", "sans-serif");
+    }
+  });
 }
 
 //renderLineChart function
@@ -326,49 +337,55 @@ function renderLineChart(q1_key) {
 
     category
       .style("fill", "#FFF")
-      .style("stroke", function(d) { return q1Z(d.id); })
+      .style("stroke", function(d) {
+        return q1Z(d.id);
+      })
       .selectAll(".dot")
-      .data(function(d){
+      .data(function(d) {
         return d.values
       })
       .enter()
       .append("circle")
       .attr("r", 4)
-      .attr("cx", function(d){
+      .attr("cx", function(d) {
         return q1X(d.year);
       })
-      .attr("cy", function(d){
+      .attr("cy", function(d) {
         return q1Y(d.ratio);
       });
 
     //empty points
     var points = q1_svg.selectAll('.points')
-        .data(categories)
-        .enter()
-        .append('g')
-        .attr('class', 'points')
-        .append('text');
+      .data(categories)
+      .enter()
+      .append('g')
+      .attr('class', 'points')
+      .append('text');
 
     var legend = q1_svg.selectAll(".legend")
-        .data(q1colNames.slice())
-        .enter().append("g")
-        .attr("class", "legend")
-        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+      .data(q1colNames.slice())
+      .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) {
+        return "translate(0," + i * 20 + ")";
+      });
 
     legend.append("line")
-        .attr("x1", q1Width - 40)
-        .attr("x2", q1Width)
-        .attr("y1", 10)
-        .attr("y2", 10)
-        .style("stroke", q1color)
-        .attr("class", "line");
+      .attr("x1", q1Width - 40)
+      .attr("x2", q1Width)
+      .attr("y1", 10)
+      .attr("y2", 10)
+      .style("stroke", q1color)
+      .attr("class", "line");
 
     legend.append("text")
-        .attr("x", q1Width - 45)
-        .attr("y", 9)
-        .attr("dy", ".35em")
-        .style("text-anchor", "end")
-        .text(function(d) { return d;})
+      .attr("x", q1Width - 45)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) {
+        return d;
+      })
 
     var focus = q1_svg.append('g')
       .attr('class', 'focus')
@@ -376,7 +393,7 @@ function renderLineChart(q1_key) {
 
     focus.append('line')
       .attr('class', 'x-hover-line hover-line')
-      .attr('y1' , 0)
+      .attr('y1', 0)
       .attr('y2', q1Height);
 
     q1_svg.append('rect')
@@ -390,7 +407,9 @@ function renderLineChart(q1_key) {
 
     //Reference: https://codepen.io/anon/pen/GxjERK
     //on how to add Tooptips to lines
-    var timeScales = data.map(function(id) { return q1X(id.sy); });
+    var timeScales = data.map(function(id) {
+      return q1X(id.sy);
+    });
 
     function mouseover() {
       focus.style("display", null);
@@ -404,13 +423,21 @@ function renderLineChart(q1_key) {
 
     function mousemove() {
       var i = d3.bisect(timeScales, d3.mouse(this)[0], 1);
-      var di = data[i-1];
+      var di = data[i - 1];
       focus.attr("transform", "translate(" + q1X(di.sy) + ",0)");
       d3.selectAll('.points text')
-        .attr('x', function(d) { return q1X(di.sy) + 15; })
-        .attr('y', function(d) { return q1Y(d.values[i-1].ratio); })
-        .text(function(d) { return d.values[i-1].ratio.toFixed(3); })
-        .style('fill', function(d) { return q1Z(d.id); })
+        .attr('x', function(d) {
+          return q1X(di.sy) + 15;
+        })
+        .attr('y', function(d) {
+          return q1Y(d.values[i - 1].ratio);
+        })
+        .text(function(d) {
+          return d.values[i - 1].ratio.toFixed(3);
+        })
+        .style('fill', function(d) {
+          return q1Z(d.id);
+        })
         .style("font-weight", "bold")
         .style("font-size", "0.8em")
         .style("font-family", "sans-serif");
@@ -456,7 +483,7 @@ var q2yAxis = d3.axisLeft()
 
 //color scheme
 var color = d3.scaleOrdinal()
-  .range(["#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+  .range(["#ff9966", "#00ccff", "#ff6600", "#0066ff", "#ff0000", "#3333cc"]);
 
 var q2_svg = d3.select('#chart_2').append("svg")
   .attr("width", q2Width + q2Margin.left + q2Margin.right)
@@ -472,14 +499,14 @@ d3.select('#q2_Form').selectAll('.q2_boxes').on('change', function() {
     if (cb.property("checked")) {
       checked_data.push(cb.property("value"));
       var checked_value = cb.property("value");
-      var index = keys.indexOf(checked_value);
+      var index = data_keys.indexOf(checked_value);
       checked_legned.push(colNames_Q2[index]);
     }
   });
   updateBarChart(checked_data, checked_legned);
 });
 renderBarChart();
-var init_keys = keys.slice(0, 2);
+var init_keys = ['tfe', 'tme'];
 var init_legends = colNames_Q2.slice(0, 2);
 updateBarChart(init_keys, init_legends);
 
@@ -494,9 +521,9 @@ function renderBarChart() {
     q2X0.domain(data.map(function(d) {
       return d.sy;
     }));
-    q2X.domain(keys).rangeRound([0, q2X0.bandwidth()]);
+    q2X.domain(data_keys).rangeRound([0, q2X0.bandwidth()]);
     q2Y.domain([0, d3.max(data, function(d) {
-      return d3.max(keys, function(key) {
+      return d3.max(data_keys, function(key) {
         return d[key];
       });
     })]).nice();
@@ -520,13 +547,39 @@ function renderBarChart() {
       .attr("text-anchor", "start")
       .text("Count");
   });
+  // legend
+  var q2_legend = q2_svg.append("g")
+    .attr("class", "q2lgd")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", 10)
+    .attr("text-anchor", "end")
+    .selectAll("g")
+    .data(colNames_Q2.slice())
+    .enter().append("g")
+    .attr("transform", function(d, i) {
+      return "translate(-550," + i * 20 + ")";
+    });
 
+  q2_legend.append("rect")
+    .attr("x", q2Width - 19)
+    .attr("width", 19)
+    .attr("height", 19)
+    .attr("fill", color);
 
+  q2_legend.append("text")
+    .attr("x", q2Width - 24)
+    .attr("y", 9.5)
+    .attr("dy", "0.32em")
+    .text(function(d) {
+      return d;
+    });
 
 }
 
 //updateBarChart function
 function updateBarChart(keys, legends) {
+
+
   d3.csv("data/vis_1_Graduate_Dropout_rate_Year.csv", function(d, i, columns) {
     for (var i = 1, n = columns.length; i < n; ++i) d[columns[i]] = +d[columns[i]];
     return d;
@@ -549,6 +602,7 @@ function updateBarChart(keys, legends) {
 
     //set all bar height to 0
     q2_svg.selectAll("rect").attr("height", 0);
+    q2_svg.select("g.q2lgd").selectAll("rect").attr("height", 19);
 
     //update each bar based on the selection
     q2_svg.append("g")
@@ -579,81 +633,13 @@ function updateBarChart(keys, legends) {
         return q2Height - q2Y(d.value);
       })
       .attr("fill", function(d) {
-        return color(d.key);
+        console.log(d.key);
+        var colorID = data_keys.indexOf(d.key);
+        console.log(colorID);
+        return color(colorID);
       });
 
     q2_svg.exit().transition().attr("height", 0).remove();
 
-
-    var legend = svg.selectAll(".q2legend")
-      .data(legends.slice(0, 2));
-
-    legend.enter().append("g");
-    legend
-      .attr("class", "q2legend")
-      .attr("transform", function(d, i) {
-        return "translate(0," + (200 + i * 20) + ")";
-      });
-
-    var legendColor = legend.selectAll('.q2legend-color').data(function(d) {
-      return [d];
-    });
-    legendColor.enter().append("rect");
-    legendColor
-      .attr('class', 'q2legend-color')
-      .attr("x", width - 18)
-      .attr("width", 18)
-      .attr("height", 18)
-      .style("fill", color);
-
-    var legendText = legend.selectAll('.legend-text').data(function(d) {
-      return [d];
-    });;
-
-    legendText.enter().append("text");
-    legendText
-      .attr('class', 'legend-text')
-      .attr("x", width - 24)
-      .attr("y", 9)
-      .attr("dy", ".35em")
-      .style("text-anchor", "end")
-      .text(function(d) {
-        return d;
-      });
-
-    legend.exit().remove();
-
-
-
-
-    /*
-        var q2_legend = q2_svg.append("g")
-          .attr("class", "q2lgd")
-          .attr("font-family", "sans-serif")
-          .attr("font-size", 10)
-          .attr("text-anchor", "end")
-          .selectAll("g")
-          .data(legends.slice(0, 2))
-          .enter().append("g")
-          .attr("transform", function(d, i) {
-            return "translate(-500," + i * 20 + ")";
-          });
-
-        q2_legend.append("rect")
-          .attr("x", q2Width - 19)
-          .attr("width", 19)
-          .attr("height", 19)
-          .attr("fill", color);
-
-        q2_legend.append("text")
-          .attr("x", q2Width - 24)
-          .attr("y", 9.5)
-          .attr("dy", "0.32em")
-          .text(function(d) {
-            return d;
-          });
-
-        q2_legend.exit().remove();
-        */
   });
 }
