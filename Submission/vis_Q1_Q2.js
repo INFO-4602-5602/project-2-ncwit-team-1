@@ -11,7 +11,6 @@ var colNames = ['Female Enrollment', 'Male Enrollment', 'Female Graduated', 'Mal
 */
 var q1colNames = ['Female/Male Graduated Ratio', 'Female/Male Quit Ratio', 'Female/Male Enrollment Ratio']
 
-
 //MarK: d3 visualization
 
 //MarK: Q1 line graph
@@ -21,6 +20,7 @@ var q1Margin = {
   bottom: 30,
   left: 40
 };
+
 var q1Width = 800 - q1Margin.left - q1Margin.right;
 var q1Height = 500 - q1Margin.top - q1Margin.bottom;
 
@@ -48,22 +48,36 @@ var q1_svg = d3.select('#chart_1').append("svg")
   .append("g")
   .attr("transform", "translate(" + q1Margin.left + "," + q1Margin.top + ")");
 
-d3.select('#q1_Form').selectAll('.category').on('change', function() {
-  var xs = d3.select('#q1_Form').selectAll('.category:checked');
-  var ids = xs[0].map(function(category) {
-    return category.id;
-  });
-  updateLineChart(ids);
-});
-renderLineChart();
+//q1 value -> column_id
+var q1_dict={
+  "enrollment": 13,
+  "graduated": 14,
+  "quit": 15
+}
 
-//renderLineChart function
-function renderLineChart() {
+d3.select('#q1_Form').selectAll('.q1_boxes').on('change', function() {
+  var checked_data_ids=[];
+  var xs = d3.select('#q1_Form').selectAll('.q1_boxes').each(function() {
+    cb=d3.select(this);
+    if(cb.property("checked")){
+    //  checked_data.push()
+      console.log(cb.property("value"));
+      console.log(q1_dict[cb.property("value")]);
+      checked_data_ids.push(q1_dict[cb.property("value")]);
+    }
+  });
+  //console.log(checked_data_ids);
+  updateLineChart(checked_data_ids);
+  //renderLineChart(13);
+});
+renderLineChart(-1);
+
+function updateLineChart(q1_keys){
   d3.csv("data/vis_1_Graduate_Dropout_rate_Year.csv", type, function(error, data) {
     if (error) throw error;
-
+    if (q1_keys.length==0) return;
     //select ratios: 'fmg', 'fml', 'fme'
-    var categories = data.columns.slice(13).map(function(id) {
+    var categories = data.columns.slice(13, 16).map(function(id) {
       return {
         id: id,
         values: data.map(function(d) {
@@ -74,6 +88,181 @@ function renderLineChart() {
         })
       };
     });
+    var scategories = new Array();
+    for(var i=0; i<q1_keys.length;i++){
+      //console.log(q1_keys[i]);
+      //console.log(categories[q1_keys[i]-13]);
+      scategories[i] = categories[q1_keys[i]-13];
+    }
+    //console.log(scategories);
+
+  q1X.domain(d3.extent(data, function(d) {
+    return d.sy;
+  }));
+
+  var q1Y_padding = 0.04;
+
+  q1Y.domain([
+    d3.min(scategories, function(c) {
+      return d3.min(c.values, function(d) {
+        return d.ratio;
+      });
+    }) - q1Y_padding,
+    d3.max(scategories, function(c) {
+      return d3.max(c.values, function(d) {
+        return d.ratio;
+      });
+    }) + q1Y_padding
+  ]).nice();
+
+  q1Z.domain(scategories.map(function(c) {
+    return c.id;
+  }));
+
+  q1_svg.append("g")
+    .attr("class", "axis axis-x")
+    .attr("transform", "translate(0," + q1Height + ")")
+    .call(d3.axisBottom(q1X));
+
+  q1_svg.append("g")
+    .attr("class", "axis")
+    .call(d3.axisLeft(q1Y))
+    .append("text")
+    .attr("x", 2)
+    .attr("y", q1Y(q1Y.ticks().pop()) + 0.5)
+    .attr("dy", "0.32em")
+    .attr("fill", "#000")
+    .attr("font-weight", "bold")
+    .attr("text-anchor", "start")
+    .text("Female/Male Ratio");
+  q1_svg.selectAll(".category").exit().remove();
+  var category = q1_svg.selectAll(".category")
+    .data(scategories)
+    .enter().append("g")
+    .attr("class", "category");
+
+  category.append("path")
+    .attr("class", "line")
+    .attr("d", function(d) {
+      return line(d.values);
+    })
+    .style("stroke", function(d) {
+      return q1Z(d.id);
+    });
+
+  category
+    .style("fill", "#FFF")
+    .style("stroke", function(d) { return q1Z(d.id); })
+    .selectAll(".dot")
+    .data(function(d){
+      return d.values
+    })
+    .enter()
+    .append("circle")
+    .attr("r", 4)
+    .attr("cx", function(d){
+      return q1X(d.year);
+    })
+    .attr("cy", function(d){
+      return q1Y(d.ratio);
+    });
+
+  //empty points
+  var points = q1_svg.selectAll('.points')
+      .data(categories)
+      .enter()
+      .append('g')
+      .attr('class', 'points')
+      .append('text');
+
+  var legend = q1_svg.selectAll(".legend")
+      .data(q1colNames.slice())
+      .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+  legend.append("line")
+      .attr("x1", q1Width - 40)
+      .attr("x2", q1Width)
+      .attr("y1", 10)
+      .attr("y2", 10)
+      .style("stroke", q1color)
+      .attr("class", "line");
+
+  legend.append("text")
+      .attr("x", q1Width - 45)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d;})
+
+  var focus = q1_svg.append('g')
+    .attr('class', 'focus')
+    .style('display', 'none');
+
+  focus.append('line')
+    .attr('class', 'x-hover-line hover-line')
+    .attr('y1' , 0)
+    .attr('y2', q1Height);
+
+  q1_svg.append('rect')
+    .attr("transform", "translate(" + q1Margin.left + "," + q1Margin.top + ")")
+    .attr("class", "overlay")
+    .attr("width", q1Width)
+    .attr("height", q1Height)
+    .on("mouseover", mouseover)
+    .on("mouseout", mouseout)
+    .on("mousemove", mousemove);
+
+  //Reference: https://codepen.io/anon/pen/GxjERK
+  //on how to add Tooptips to lines
+  var timeScales = data.map(function(id) { return q1X(id.sy); });
+
+  function mouseover() {
+    focus.style("display", null);
+    d3.selectAll('.points text').style("display", null);
+  }
+
+  function mouseout() {
+    focus.style("display", "none");
+    d3.selectAll('.points text').style("display", "none");
+  }
+
+  function mousemove() {
+    var i = d3.bisect(timeScales, d3.mouse(this)[0], 1);
+    var di = data[i-1];
+    focus.attr("transform", "translate(" + q1X(di.sy) + ",0)");
+    d3.selectAll('.points text')
+      .attr('x', function(d) { return q1X(di.sy) + 15; })
+      .attr('y', function(d) { return q1Y(d.values[i-1].ratio); })
+      .text(function(d) { return d.values[i-1].ratio.toFixed(3); })
+      .style('fill', function(d) { return q1Z(d.id); })
+      .style("font-weight", "bold")
+      .style("font-size", "0.8em")
+      .style("font-family", "sans-serif");
+  }
+});
+}
+
+//renderLineChart function
+function renderLineChart(q1_key) {
+  d3.csv("data/vis_1_Graduate_Dropout_rate_Year.csv", type, function(error, data) {
+    if (error) throw error;
+    if (q1_key < 0) return;
+    //select ratios: 'fmg', 'fml', 'fme'
+    var categories = data.columns.slice(13, 16).map(function(id) {
+      return {
+        id: id,
+        values: data.map(function(d) {
+          return {
+            year: d.sy,
+            ratio: d[id]
+          };
+        })
+      };
+    });
+
+    //console.log(categories);
 
     q1X.domain(d3.extent(data, function(d) {
       return d.sy;
