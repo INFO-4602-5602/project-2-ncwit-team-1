@@ -1,21 +1,13 @@
 /////////vis for Question 1 & 2/////////////
 
 //global variables
-///////// HEAD
+
 var colNames_Q2 = ['Female Enrollment', 'Male Enrollment', 'Female Graduated', 'Male Graduated', 'Female Quit', 'Male Quit'];
 var keys = ['tfe', 'tme', 'tfg', 'tmg', 'tfl', 'tml'];
 
-//=======
 
-var colNames = ['Female Enrollment', 'Male Enrollment', 'Female Graduated', 'Male Graduated', 'Female Quit', 'Male Quit', 'Female/Male Enrollment', 'Female/Male Graduated', 'Female/Male Quit'];
-<<<<<<< HEAD
-
-/////// 1786aaaa1a38d2324160a8c5ca96835332c8f0d7
-
-=======
-*/
 var q1colNames = ['Female/Male Graduated Ratio', 'Female/Male Quit Ratio', 'Female/Male Enrollment Ratio']
->>>>>>> 0a3c3d21b7758f505ca6fe97f4b1c126deaaa353
+
 
 //MarK: d3 visualization
 
