@@ -32,6 +32,12 @@ var q1X = d3.scaleTime().range([0, q1Width]),
 
 var q1color = d3.scaleOrdinal(d3.schemeCategory10);
 
+//define xy axis
+var q1xAxis = d3.axisBottom()
+  .scale(q1X);
+var q1yAxis = d3.axisLeft()
+  .scale(q1Y).ticks(null, "s");
+
 var line = d3.line()
     .curve(d3.curveMonotoneX)
     .x(function(d) {
@@ -115,26 +121,13 @@ function updateLineChart(q1_keys){
     }) + q1Y_padding
   ]).nice();
 
+  q1_svg.selectAll('.q1axis_x').call(q1xAxis);
+  q1_svg.selectAll('.q1axis_y').call(q1yAxis);
+
   q1Z.domain(scategories.map(function(c) {
     return c.id;
   }));
 
-  q1_svg.append("g")
-    .attr("class", "axis axis-x")
-    .attr("transform", "translate(0," + q1Height + ")")
-    .call(d3.axisBottom(q1X));
-
-  q1_svg.append("g")
-    .attr("class", "axis")
-    .call(d3.axisLeft(q1Y))
-    .append("text")
-    .attr("x", 2)
-    .attr("y", q1Y(q1Y.ticks().pop()) + 0.5)
-    .attr("dy", "0.32em")
-    .attr("fill", "#000")
-    .attr("font-weight", "bold")
-    .attr("text-anchor", "start")
-    .text("Female/Male Ratio");
   q1_svg.selectAll(".category").exit().remove();
   var category = q1_svg.selectAll(".category")
     .data(scategories)
@@ -248,7 +241,7 @@ function updateLineChart(q1_keys){
 function renderLineChart(q1_key) {
   d3.csv("data/vis_1_Graduate_Dropout_rate_Year.csv", type, function(error, data) {
     if (error) throw error;
-    if (q1_key < 0) return;
+
     //select ratios: 'fmg', 'fml', 'fme'
     var categories = data.columns.slice(13, 16).map(function(id) {
       return {
@@ -261,6 +254,7 @@ function renderLineChart(q1_key) {
         })
       };
     });
+
 
     //console.log(categories);
 
