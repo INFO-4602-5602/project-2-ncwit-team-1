@@ -72,6 +72,7 @@ d3.select('#q1_Form').selectAll('.q1_boxes').on('change', function() {
   //renderLineChart(13);
 });
 renderLineChart(-1);
+updateLineChart([15]);
 
 function updateLineChart(q1_keys) {
   d3.csv("data/vis_1_Graduate_Dropout_rate_Year.csv", type, function(error, data) {
