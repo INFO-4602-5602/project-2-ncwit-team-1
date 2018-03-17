@@ -56,8 +56,15 @@ body {
   stroke-width: 4px;
 }
 
-.dot {
+.hover-line {
+  stroke: grey;
+  stroke-width: 2px;
+  stroke-dasharray: 3,3;
+}
 
+.overlay {
+  fill: none;
+  pointer-events: all;
 }
 
 p {
