@@ -24,12 +24,13 @@
 <body>
   <div class="container" id="shell">
     <div class="jumbotron row">
-      <div class="col">
+      <div class="col-8">
         <h1>INFO 4602-5602: Project 2</h1>
         <hr class="my-4">
-        <p>This project explores the National Center for Women in Technology(NCWIT) dataset. All of our four visualizations focus on comparisons between female and male from different aspects: time, enrollment number, graduated number, drop-out(left institution) number, major declaration time and race distribution. </p>
+        <p>This project explores the National Center for Women in Technology(NCWIT) dataset. All of our four visualizations focus on comparisons between female and male from different aspects: time, enrollment number, graduated number, drop-out(left institution)
+          number, major declaration time and race distribution. </p>
       </div>
-      <div class="col text-right">
+      <div class="col-4 text-right">
         <img class="img-thumbnail" id="head_image" src="images/head_image.jpg" alt="">
       </div>
     </div>
@@ -140,7 +141,7 @@
 
           </form>
 
-          <h6> Mouseover to get detailed data information. Click on legends to filter data.</h6>
+          <h6> Mouseover to get detailed data information.</h6>
           <h6><br>Conclusions:</br><h6>
           <h4><ul><li> The number of male is much more than female in all enrollment, graduated and dropout aspects.</li></ul>
 
@@ -148,6 +149,9 @@
         <div class="col-9  ">
           <h3 class="text-center">Chart</h3>
           <div class="charts" id="chart_2">
+            <div class="text-center" id="q2_tp">
+              <small>--</small>
+            </div>
 
           </div>
         </div>
@@ -165,7 +169,7 @@
           <p>Male: <input type="checkbox" id="cb_male" onclick="display_func_male()" checked></p>
             <h6> Mouseover to get tooltips;
               Click on legends to filter data.</h6>
-            <h6><br>Conclusions:</br><h6>
+          <h6><br>Conclusions:</br><h6>
             <h4><ul><li>Enrollment trend is almost the same between male and female students.</li></ul>
             <h4><ul><li>Enrollment count decreases as time goes by.</li></ul>
 
@@ -200,7 +204,8 @@
           <h4>
           <br>We use color depth to indicate amount.</br></h4><h6> Click on pie chart to zoom in; click on center to zoom out.</h6>
           <h6><br>Conclusions:</br><h6>
-          <h4><ul><li>Number of male students are much more than female students no matter which year.<h6>(first layer)</h6></li></ul>
+          <h4><ul><li>Number of male students are much more than female students no matter which year.<h6>(first layer)</h6></li>
+          </ul>
           <h4><ul><li>Number of students increased sharply after 2010 no matter which gender.<h6>(second layer after zooming in)</h6></li></ul>
           <h4><ul><li>White, asian and hispanics are top dominated races no matter which year which gender.<h6>(third layer after zooming in)</h6></li></ul>
 

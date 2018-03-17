@@ -6,7 +6,7 @@ var colNames_Q2 = ['Female Enrollment', 'Male Enrollment', 'Female Graduated', '
 var data_keys = ['tfe', 'tme', 'tfg', 'tmg', 'tfl', 'tml'];
 
 
-var q1colNames = [ 'Female/Male Graduated Ratio', 'Female/Male Quit Ratio', 'Female/Male Enrollment Ratio']
+var q1colNames = ['Female/Male Graduated Ratio', 'Female/Male Quit Ratio', 'Female/Male Enrollment Ratio']
 
 //MarK: d3 visualization
 
@@ -24,8 +24,8 @@ var q1Height = 500 - q1Margin.top - q1Margin.bottom;
 var parseTime = d3.timeParse("%Y");
 
 var q1X = d3.scaleTime().range([0, q1Width]),
-    q1Y = d3.scaleLinear().range([q1Height, 0]),
-    q1Z = d3.scaleOrdinal(d3.schemeCategory10);
+  q1Y = d3.scaleLinear().range([q1Height, 0]),
+  q1Z = d3.scaleOrdinal(d3.schemeCategory10);
 
 var q1color = d3.scaleOrdinal(d3.schemeCategory10);
 
@@ -62,8 +62,8 @@ d3.select('#q1_Form').selectAll('.q1_boxes').on('change', function() {
   var checked_data_ids = [];
   var xs = d3.select('#q1_Form').selectAll('.q1_boxes').each(function() {
     cb = d3.select(this);
-    if(cb.property("checked")){
-    //  checked_data.push()
+    if (cb.property("checked")) {
+      //  checked_data.push()
       checked_data_ids.push(q1_dict[cb.property("value")]);
     }
   });
@@ -77,7 +77,7 @@ updateLineChart([15]);
 function updateLineChart(q1_keys) {
   d3.csv("data/vis_1_Graduate_Dropout_rate_Year.csv", type, function(error, data) {
     if (error) throw error;
-    if (q1_keys.length == 0){
+    if (q1_keys.length == 0) {
       q1_svg.selectAll(".category").remove();
       q1_svg.selectAll(".legend").remove();
     }
@@ -97,7 +97,7 @@ function updateLineChart(q1_keys) {
     var scategories = new Array();
     var sQ1LegendNames = new Array();
     var sId = new Array();
-    for(var i = 0; i < q1_keys.length; i++){
+    for (var i = 0; i < q1_keys.length; i++) {
       scategories[i] = categories[q1_keys[i] - 13];
       sQ1LegendNames[i] = q1colNames[q1_keys[i] - 13];
       sId[i] = scategories[i].id;
@@ -128,24 +128,24 @@ function updateLineChart(q1_keys) {
 
     q1_svg.selectAll('.q1axis_x').call(q1xAxis);
     q1_svg.selectAll('.q1axis_y').call(q1yAxis);
-/*
-    q1_svg.append("g")
-      .attr("class", "axis axis-x")
-      .attr("transform", "translate(0," + q1Height + ")")
-      .call(d3.axisBottom(q1X));
+    /*
+        q1_svg.append("g")
+          .attr("class", "axis axis-x")
+          .attr("transform", "translate(0," + q1Height + ")")
+          .call(d3.axisBottom(q1X));
 
-    q1_svg.append("g")
-      .attr("class", "axis")
-      .call(d3.axisLeft(q1Y))
-      .append("text")
-      .attr("x", 2)
-      .attr("y", q1Y(q1Y.ticks().pop()) + 0.5)
-      .attr("dy", "0.32em")
-      .attr("fill", "#000")
-      .attr("font-weight", "bold")
-      .attr("text-anchor", "start")
-      .text("Female/Male Ratio");
-    */
+        q1_svg.append("g")
+          .attr("class", "axis")
+          .call(d3.axisLeft(q1Y))
+          .append("text")
+          .attr("x", 2)
+          .attr("y", q1Y(q1Y.ticks().pop()) + 0.5)
+          .attr("dy", "0.32em")
+          .attr("fill", "#000")
+          .attr("font-weight", "bold")
+          .attr("text-anchor", "start")
+          .text("Female/Male Ratio");
+        */
     q1_svg.selectAll(".category").exit().remove();
     var category = q1_svg.selectAll(".category")
       .data(scategories)
@@ -161,32 +161,32 @@ function updateLineChart(q1_keys) {
         return q1Z(d.id);
       });
 
-  //q1_svg.selectAll(".line").remove();
-  q1_svg.selectAll(".category").remove();
-  q1_svg.selectAll(".legend").remove();
-  q1_svg.selectAll(".points").remove();
-  q1_svg.selectAll('.q1axis_x').call(q1xAxis);
-  q1_svg.selectAll('.q1axis_y').call(q1yAxis);
+    //q1_svg.selectAll(".line").remove();
+    q1_svg.selectAll(".category").remove();
+    q1_svg.selectAll(".legend").remove();
+    q1_svg.selectAll(".points").remove();
+    q1_svg.selectAll('.q1axis_x').call(q1xAxis);
+    q1_svg.selectAll('.q1axis_y').call(q1yAxis);
 
-  //q1_svg.selectAll(".line").attr("height", 0);
-  q1Z.domain(categories.map(function(c) {
-    return c.id;
-  }));
+    //q1_svg.selectAll(".line").attr("height", 0);
+    q1Z.domain(categories.map(function(c) {
+      return c.id;
+    }));
 
-  var category = q1_svg.selectAll(".category")
-    .data(scategories)
-    .enter().append("g")
-    .attr("class", "category");
+    var category = q1_svg.selectAll(".category")
+      .data(scategories)
+      .enter().append("g")
+      .attr("class", "category");
 
-  category.append("path")
-    .attr("class", "line")
-    .attr("d", function(d) {
-      return line(d.values);
-    })
-    .style("stroke", function(d) {
-      console.log(q1Z(d.id));
-      return q1Z(d.id);
-    });
+    category.append("path")
+      .attr("class", "line")
+      .attr("d", function(d) {
+        return line(d.values);
+      })
+      .style("stroke", function(d) {
+        console.log(q1Z(d.id));
+        return q1Z(d.id);
+      });
 
     category
       .style("fill", "#FFF")
@@ -207,15 +207,15 @@ function updateLineChart(q1_keys) {
         return q1Y(d.ratio);
       });
 
-  //empty points
-  var points = q1_svg.selectAll('.points')
+    //empty points
+    var points = q1_svg.selectAll('.points')
       .data(scategories)
       .enter()
       .append('g')
       .attr('class', 'points')
       .append('text');
 
-  var legend = q1_svg.selectAll(".legend")
+    var legend = q1_svg.selectAll(".legend")
       .data(sQ1LegendNames)
       .enter().append("g")
       .attr("class", "legend")
@@ -228,7 +228,9 @@ function updateLineChart(q1_keys) {
       .attr("x2", q1Width)
       .attr("y1", 10)
       .attr("y2", 10)
-      .style("stroke", function(d, i) { return q1Z(sId[i]);})
+      .style("stroke", function(d, i) {
+        return q1Z(sId[i]);
+      })
       .attr("class", "line");
 
     legend.append("text")
@@ -236,56 +238,68 @@ function updateLineChart(q1_keys) {
       .attr("y", 9)
       .attr("dy", ".35em")
       .style("text-anchor", "end")
-      .text(function(d) { return d;})
+      .text(function(d) {
+        return d;
+      })
 
-  var focus = q1_svg.append('g')
-    .attr('class', 'focus')
-    .style('display', 'none');
+    var focus = q1_svg.append('g')
+      .attr('class', 'focus')
+      .style('display', 'none');
 
-  focus.append('line')
-    .attr('class', 'x-hover-line hover-line')
-    .attr('y1' , 0)
-    .attr('y2', q1Height);
+    focus.append('line')
+      .attr('class', 'x-hover-line hover-line')
+      .attr('y1', 0)
+      .attr('y2', q1Height);
 
-  q1_svg.append('rect')
-    .attr("transform", "translate(" + q1Margin.left + "," + q1Margin.top + ")")
-    .attr("class", "overlay")
-    .attr("width", q1Width)
-    .attr("height", q1Height)
-    .on("mouseover", mouseover)
-    .on("mouseout", mouseout)
-    .on("mousemove", mousemove);
+    q1_svg.append('rect')
+      .attr("transform", "translate(" + q1Margin.left + "," + q1Margin.top + ")")
+      .attr("class", "overlay")
+      .attr("width", q1Width)
+      .attr("height", q1Height)
+      .on("mouseover", mouseover)
+      .on("mouseout", mouseout)
+      .on("mousemove", mousemove);
 
     q1_svg.exit().transition().attr("height", 0).remove();
 
-  //Reference: https://codepen.io/anon/pen/GxjERK
-  //on how to add Tooptips to lines
-  var timeScales = data.map(function(id) { return q1X(id.sy); });
+    //Reference: https://codepen.io/anon/pen/GxjERK
+    //on how to add Tooptips to lines
+    var timeScales = data.map(function(id) {
+      return q1X(id.sy);
+    });
 
-  function mouseover() {
-    focus.style("display", null);
-    d3.selectAll('.points text').style("display", null);
-  }
+    function mouseover() {
+      focus.style("display", null);
+      d3.selectAll('.points text').style("display", null);
+    }
 
-  function mouseout() {
-    focus.style("display", "none");
-    d3.selectAll('.points text').style("display", "none");
-  }
+    function mouseout() {
+      focus.style("display", "none");
+      d3.selectAll('.points text').style("display", "none");
+    }
 
-  function mousemove() {
-    var i = d3.bisect(timeScales, d3.mouse(this)[0], 1);
-    var di = data[i-1];
-    focus.attr("transform", "translate(" + q1X(di.sy) + ",0)");
-    d3.selectAll('.points text')
-      .attr('x', function(d) { return q1X(di.sy) + 15; })
-      .attr('y', function(d) { return q1Y(d.values[i-1].ratio); })
-      .text(function(d) { return d.values[i-1].ratio.toFixed(3); })
-      .style('fill', function(d) { return q1Z(d.id); })
-      .style("font-weight", "bold")
-      .style("font-size", "0.8em")
-      .style("font-family", "sans-serif");
-  }
-});
+    function mousemove() {
+      var i = d3.bisect(timeScales, d3.mouse(this)[0], 1);
+      var di = data[i - 1];
+      focus.attr("transform", "translate(" + q1X(di.sy) + ",0)");
+      d3.selectAll('.points text')
+        .attr('x', function(d) {
+          return q1X(di.sy) + 15;
+        })
+        .attr('y', function(d) {
+          return q1Y(d.values[i - 1].ratio);
+        })
+        .text(function(d) {
+          return d.values[i - 1].ratio.toFixed(3);
+        })
+        .style('fill', function(d) {
+          return q1Z(d.id);
+        })
+        .style("font-weight", "bold")
+        .style("font-size", "0.8em")
+        .style("font-family", "sans-serif");
+    }
+  });
 }
 
 //renderLineChart function
@@ -357,6 +371,9 @@ var q2xAxis = d3.axisBottom()
 var q2yAxis = d3.axisLeft()
   .scale(q2Y).ticks(null, "s");
 
+var q2_tp = d3.select("#q2_tp");
+
+
 //color scheme
 var color = d3.scaleOrdinal()
   .range(["#ff9966", "#00ccff", "#ff6600", "#0066ff", "#ff0000", "#3333cc"]);
@@ -366,6 +383,8 @@ var q2_svg = d3.select('#chart_2').append("svg")
   .attr("height", q2Height + q2Margin.top + q2Margin.bottom)
   .append("g")
   .attr("transform", "translate(" + q2Margin.left + "," + q2Margin.top + ")");
+
+
 
 d3.select('#q2_Form').selectAll('.q2_boxes').on('change', function() {
   var checked_data = [];
@@ -379,12 +398,12 @@ d3.select('#q2_Form').selectAll('.q2_boxes').on('change', function() {
       checked_legned.push(colNames_Q2[index]);
     }
   });
-  updateBarChart(checked_data, checked_legned);
+  updateBarChart(checked_data);
 });
 renderBarChart();
 var init_keys = ['tfe', 'tme'];
 var init_legends = colNames_Q2.slice(0, 2);
-updateBarChart(init_keys, init_legends);
+updateBarChart(init_keys);
 
 //render barchart - create the xy axies only
 function renderBarChart() {
@@ -453,7 +472,7 @@ function renderBarChart() {
 }
 
 //updateBarChart function
-function updateBarChart(keys, legends) {
+function updateBarChart(keys) {
 
 
   d3.csv("data/vis_1_Graduate_Dropout_rate_Year.csv", function(d, i, columns) {
@@ -513,6 +532,12 @@ function updateBarChart(keys, legends) {
         var colorID = data_keys.indexOf(d.key);
         console.log(colorID);
         return color(colorID);
+      })
+      .on("mouseover", function(d) {
+        q2_tp.html(d.value);
+      })
+      .on("mouseout", function(d) {
+        q2_tp.html("--");
       });
 
     q2_svg.exit().transition().attr("height", 0).remove();
